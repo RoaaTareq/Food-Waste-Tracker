@@ -1,0 +1,19 @@
+.Main-section{
+    margin-top: 120px;
+    color: #FFF;
+}
+.trackingapp{
+    
+    width: 500px;
+    padding: 12px;
+    position:relative;
+    top: -107px;
+
+}
+.card-info{
+    background: linear-gradient(to top, #97bb7d 36%, #97bb7d 12%, #1a4f49 18%, #1b584f 49%);
+    width: 105px;
+    padding: 45px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }

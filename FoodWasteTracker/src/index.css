@@ -1,0 +1,9 @@
+@font-face {
+  font-family:'Nunito Sans';
+  src: url('../src/fonts/NunitoSans-ExtraLight.ttf') format('truetype');
+  
+}
+
+body{
+  font-family:'Nunito Sans' !important;
+}

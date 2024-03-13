@@ -1,0 +1,25 @@
+.About-section{
+    color:#FFF
+}
+.vision-img{
+    width: 100px;
+    padding: 12px;
+    margin: 12px auto;
+    display: flex;
+}
+.title-about{
+    text-align: center;
+    margin: 12px 0;
+}
+.vision-text{
+    text-align: center;
+}
+.main_title{
+    text-align: center;
+}
+.line-vision{
+    color:orange;
+    width: 17rem;
+    margin: auto;
+    font-weight: 900;
+}
