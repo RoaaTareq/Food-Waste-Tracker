@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../App.css";
 import "../../assets/styles/components/About.css";
 import Vision from "../../assets/Images/Vision.png";
@@ -11,7 +11,7 @@ const About = () => {
             <div className="container">
                 <h1 className="title-about">About US</h1>
                 <div className="row ">
-                    <div className="col-4">
+                    <div className="col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12">
                         <img src={Vision} alt="vision" className="vision-img" />
                         <h1 className="main_title">Our Vision</h1>
                         <hr />
@@ -19,7 +19,7 @@ const About = () => {
                         To create a world where no food goes to waste, fostering a sustainable and equitable future for all .
                         </p>
                     </div>
-                    <div className="col-4">
+                    <div  className="col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12">
                         <img src={Mission} alt="vision" className="vision-img" />
                         <h1 className="main_title">Our Mission</h1>
                         <hr />
@@ -27,7 +27,7 @@ const About = () => {
                         Empowering a zero-waste future through innovative tracking technology and collaboration.
                         </p>
                     </div>
-                    <div className="col-4">
+                    <div className="col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 cal card-value">
                         <img src={Value} alt="vision" className="vision-img" />
                         <h1 className="main_title">Our Value</h1>
                         <hr />

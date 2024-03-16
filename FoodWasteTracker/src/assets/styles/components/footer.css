@@ -1,0 +1,32 @@
+.footer-section{
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+}
+.socialmedia-list{
+   list-style: none;
+   display: flex;
+  gap: 30px;
+  padding: 0;
+}
+.item{
+    font-size: 30px;
+    text-align: left;
+}
+.useful-list{
+    list-style: none;
+    display: flex;
+    padding: 0;
+    gap: 25px;
+}
+
+.usful-item{
+    font-size: 16px;
+    text-align: left;
+}
+.title-footer ,.about-text{
+    text-align: left;
+}
+.about-text{
+    width: 400px;
+}

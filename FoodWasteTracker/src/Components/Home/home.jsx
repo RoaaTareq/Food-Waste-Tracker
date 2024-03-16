@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Topsection from './Topsection';
 import About from './About'
 import Team from './Jointeam'
