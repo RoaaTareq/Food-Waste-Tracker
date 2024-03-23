@@ -8,9 +8,9 @@ import Footer from './Components/layout/footer'
 function App() {
   return (
   <div>
-    {/* <Header/> */}
-    <Home/>
-    <Footer/>
+    <Header/>
+    {/* <Home/>
+    <Footer/> */}
   </div>
 
   );

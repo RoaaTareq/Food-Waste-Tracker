@@ -16,4 +16,73 @@
     padding: 45px;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ }
+
+@media screen and (min-device-width: 1024px) and (max-device-width:1199.99px) {
+    .trackingapp {
+        width: 400px;
+        padding: 30px;
+        top: unset;
+        margin: auto;
+            }
+            .main-title,.sub-fact{
+                text-align: center;
+                margin: 24px 0;
+            }
+            .card-group {
+                justify-content: center !important;
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            .main-text{
+                width: 433px;
+    text-align: center;
+    margin: auto;
+            }
+
+}
+
+@media screen and (min-device-width: 992px) and (max-device-width:1023.999px) {
+
+    .trackingapp {
+        width: 400px;
+        padding: 30px;
+        top: unset;
+        margin: auto;
+            }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width:991.999px) {
+
+    .trackingapp {
+        width: 400px;
+        padding: 30px;
+        top: unset;
+        margin: auto;
+            }
+}
+@media screen and (min-device-width: 600px) and (max-device-width:767.999px) {
+.card-info {
+    background: linear-gradient(to top, #97bb7d 36%, #97bb7d 12%, #1a4f49 18%, #1b584f 49%);
+    width: 77px;
+    padding: 45px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+}
+
+@media screen and (max-width: 600px) {
+   .card-group{
+    display: none !important;
+   }
+    .trackingapp {
+        max-width: 299px;
+    padding: 0px;
+    top: unset;
+    margin: auto;
+    width: 100%;
+            }
+
     }

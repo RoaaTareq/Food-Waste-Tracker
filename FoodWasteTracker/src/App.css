@@ -4,6 +4,12 @@
   
 }
 
+@font-face {
+  font-family:'Cairo';
+  src: url('../src/fonts/Cairo-VariableFont_slnt\,wght.ttf') format('truetype');
+  
+}
+
 body{
   font-family:'Nunito Sans' !important;
   background-color: #1a4f49 !important;

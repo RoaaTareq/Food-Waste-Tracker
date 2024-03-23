@@ -1,8 +1,24 @@
-.main-header{
+.mainheader{
     color:#FFF;
     margin-top: 30px;
 
 }
+header.mainrtl {
+   direction: rtl;
+   color:#FFF;
+   margin-top: 30px;
+   font-family: 'Cairo';
+  }
+header:not(.mainrtl) {
+    color:#FFF;
+    margin-top: 30px;
+  }
+  .btn-lang{
+    border-radius: 50%;
+    width: 100%;
+    height: 50%;
+    border: none;
+  }
 
 .Main-list{
     display: flex;
@@ -23,4 +39,10 @@
     width: 150px;
     color:#1a4f49;
     font-weight: 900;
+}
+@media screen and (max-device-width: 600px) {
+.main-header{
+    display: none;
+}
+
 }
