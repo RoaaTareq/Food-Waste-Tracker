@@ -40,9 +40,12 @@ header:not(.mainrtl) {
     color:#1a4f49;
     font-weight: 900;
 }
-@media screen and (max-device-width: 600px) {
-.main-header{
+@media screen and (max-width: 767px) {
+.web-header{
     display: none;
+}
+header:not(.mainrtl) {
+margin: 0;
 }
 
 }

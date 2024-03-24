@@ -1,0 +1,44 @@
+.burger-menu {
+    position: relative;
+    padding: 12px;
+  }
+  
+  .burger-menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2.5rem;
+    color: #f0f0f0;
+    font-weight: 800;
+    border-radius: 12px;
+  }
+  
+  .burger-menu-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+  }
+  
+  .burger-menu-list li {
+    list-style: none;
+  }
+  
+  .burger-menu-list li a {
+    text-decoration: none;
+    color: #FFF;
+    padding: 5px 0;
+  }
+  .burger-menu{
+    display: none;
+  }
+  @media screen and (max-width: 767px) {
+    .burger-menu{
+        display: block;
+      }
+  }
+  
