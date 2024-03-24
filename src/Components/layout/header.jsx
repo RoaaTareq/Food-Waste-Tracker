@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import "../../assets/styles/components/header.css";
 import LanguageSwitcher from './LanguageSwitcher';
-import { useTranslation } from 'react-i18next';
 import '../../App.css'
 
 const Header = () => {
@@ -14,15 +15,17 @@ const Header = () => {
                     <div>
                         <h1 className="main-title">{t('logo')}</h1>
                     </div>
-                    <ul class="Main-list ">
+                    <ul className="Main-list">
                         <li>{t('home')}</li>
                         <li>{t('about')}</li>
                         <li>{t('career')}</li>
                         <li>{t('contact')}</li>
                     </ul>
                     <div className="d-flex align-items-center gap-3">
-                    <LanguageSwitcher />
+                        <LanguageSwitcher />
+                        <Link to="/login">
                         <button className="btn-login">{t('login')}</button>
+                        </Link>
                     </div>
                 </div>
             </div>
