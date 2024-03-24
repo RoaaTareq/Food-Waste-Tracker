@@ -1,4 +1,5 @@
 import './App.css';
+import './assets/styles/global/global.css'
 import Header from './Components/layout/header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Components/Home/home';
@@ -12,7 +13,7 @@ function App() {
       <div>
         <Header />
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           {/* Other routes */}
           {/* Ensure that you have defined other routes as well */}

@@ -6,7 +6,9 @@ const LoginPage = () => {
    
     return (
        <section className="login-page ">
+       
             <form action="" className="login-form">
+            <h1>Welcome Food limit</h1>
              <div><label htmlFor="">Username :</label> <input type="text" className="name-input" /></div>
              <div><label htmlFor=""> Password :</label> <input type="text" className="password-input" /></div>
              <button className="login-btn">Login</button>

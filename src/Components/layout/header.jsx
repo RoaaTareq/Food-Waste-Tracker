@@ -5,6 +5,7 @@ import "../../assets/styles/components/header.css";
 import LanguageSwitcher from './LanguageSwitcher';
 import Mobheader from './menu'
 import '../../App.css';
+import '../../assets/styles/global/global.css'
 
 const Header = () => {
     const { t , i18n } = useTranslation();
@@ -16,8 +17,9 @@ const Header = () => {
             <div className="container web-header">
                 <div className="d-flex justify-content-between align-items-center">
                     <div>
+                    <Link to="/">
                         <h1 className="main-title">Food <sub>Limit</sub></h1>
-                        
+                        </Link>
                     </div>
                     
                     <ul className="Main-list">
