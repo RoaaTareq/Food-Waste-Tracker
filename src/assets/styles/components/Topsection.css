@@ -3,12 +3,17 @@
     color: #FFF;
 }
 .trackingapp{
-    
-    width: 500px;
+    width: 400px;
     padding: 12px;
-    position:relative;
-    top: -107px;
+    position: relative;
+      border-radius: 50%;
+    border: 6px solid red;
+    margin: auto;
 
+}
+.list-goals{
+    list-style: none;
+    padding: 0;
 }
 .card-info{
     background: linear-gradient(to top, #97bb7d 36%, #97bb7d 12%, #1a4f49 18%, #1b584f 49%);
@@ -36,9 +41,9 @@
             }
 
             .main-text{
-                width: 433px;
+               
     text-align: center;
-    margin: auto;
+    margin: 15px auto;
             }
 
 }
