@@ -30,7 +30,9 @@
 .about-text{
     width: 400px;
 }
-
+.title-footer-ar{
+    text-align: right;
+}
 
 @media screen and (max-width: 600px)  {
     .about-text {

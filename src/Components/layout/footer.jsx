@@ -8,6 +8,7 @@ import { faFacebook, faInstagram, faLinkedin } from "@fortawesome/free-brands-sv
 const Footer = () => {
     const { t , i18n } = useTranslation();
     const mainrtl = i18n.language === 'ar';
+    const isArabic=i18n.language === 'ar'
     return (
         <section className={ mainrtl ? 'mainrtl' : ''}>
             <hr />
@@ -20,7 +21,7 @@ const Footer = () => {
                         </p>
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                        <h5 className="title-footer">{t('useful')} </h5>
+                        <h5 className={isArabic ? 'title-footer-ar' : 'title-footer '}>{t('useful')} </h5>
                         <ul className="useful-list">
                             <li className="usful-item">{t('home')}</li>
                             <li className="usful-item">{t('about')}</li>
@@ -29,7 +30,7 @@ const Footer = () => {
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
                         <div>
-                            <h5 className="title-footer">{t('Follow')}</h5>
+                            <h5 className={isArabic ? 'title-footer-ar' : 'title-footer '}>{t('Follow')}</h5>
                             <ul className="socialmedia-list">
                                 <li className="item">
                                     <FontAwesomeIcon icon={faFacebook} />
