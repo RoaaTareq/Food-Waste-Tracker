@@ -30,3 +30,9 @@
 .about-text{
     width: 400px;
 }
+
+@media screen and (max-width: 600px)  {
+    .about-text {
+        width: 100%;
+    }
+}
