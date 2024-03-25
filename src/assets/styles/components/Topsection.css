@@ -2,6 +2,16 @@
     margin: 120px 0;
     color: #FFF;
 }
+section.mainrtl {
+    direction: rtl;
+    color:#FFF;
+    margin-top: 30px;
+    font-family: 'NotoNask';
+   }
+ section:not(.mainrtl) {
+     color:#FFF;
+     margin-top: 30px;
+   }
 .trackingapp{
     width: 400px;
     padding: 12px;

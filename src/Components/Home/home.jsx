@@ -12,10 +12,11 @@ const Home = () => {
     <div>
       <Topsection/>
       <Goals/>
-      <Sector/>
       <Service/>
-    <About/>
-    <Team/>
+      <Sector/>
+      
+    {/* <About/>
+    <Team/> */}
     
     </div>
   );

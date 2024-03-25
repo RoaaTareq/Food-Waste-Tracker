@@ -1,0 +1,27 @@
+.card{
+    border-radius: 14px;
+    display: flex;
+    padding: 25px;
+}
+
+.data-imag{
+    width: 120px;
+    margin: 20px auto;
+}
+.sub-title{
+    text-align: center;
+    font-size: 18px;
+}
+.service-title{
+    text-align: center;
+    margin: 24px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        border-radius: 14px;
+        display: flex;
+        padding: 25px;
+        width: 300px;
+    }
+}
