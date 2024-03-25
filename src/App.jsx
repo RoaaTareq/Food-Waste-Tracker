@@ -18,7 +18,7 @@ function App() {
           {/* Other routes */}
           {/* Ensure that you have defined other routes as well */}
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );

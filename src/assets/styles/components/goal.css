@@ -1,0 +1,60 @@
+.Goal-section{
+    background-color: #fff;
+    padding: 150px 0;
+    padding: 90px 0;
+    background-image: linear-gradient(#9aa0aa 69.5%, #fff 0);
+}
+.icon-size{
+    height: auto !important;
+}
+.goal-title{
+    text-align: center;
+    color:#24508f;
+    font-weight: 900;
+    margin: 12px ;
+}
+.card-1{
+    background: #5bafed;
+    border: 1px solid #e4e7ec;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px hsla(220,6%,90%,.66), 0 0 8px rgba(228,231,236,.3);
+    border-radius: 14px ;
+    color:#000;
+    padding: 40px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    
+}
+.sub-title{
+    font-size: 18px;
+    font-weight: 900;
+
+}
+.card-2{
+    background: #198754;
+    border: 1px solid #e4e7ec;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px hsla(220,6%,90%,.66), 0 0 8px rgba(228,231,236,.3);
+    border-radius: 14px ;
+    color:#000;
+    padding: 30px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+}
+.card-3{
+    background: #ffc107;
+    border: 1px solid #e4e7ec;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px hsla(220,6%,90%,.66), 0 0 8px rgba(228,231,236,.3);
+    border-radius: 14px ;
+    color:#000;
+    padding: 30px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+}
+.icon{
+    width: 100px;
+}
