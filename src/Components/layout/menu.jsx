@@ -5,6 +5,8 @@ import '../../assets/styles/global/global.css'
 import { Link } from "react-router-dom";
 
 const BurgerMenu = () => {
+  const { t , i18n } = useTranslation();
+  const mainrtl = i18n.language === 'ar';
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -23,10 +25,10 @@ const BurgerMenu = () => {
      </div>
       {isOpen && (
         <ul className="burger-menu-list">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Career</a></li>
+          <li><a href="#">{t('home')}</a></li>
+          <li><a href="#">{t('about')}</a></li>
+          <li><a href="#">{t('contact')}</a></li>
+          <li><a href="#">{t('career')}</a></li>
           {/* Add more menu items as needed */}
         </ul>
       )}
