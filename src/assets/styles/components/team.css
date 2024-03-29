@@ -1,13 +1,17 @@
-.team-section{
-   color:#FFF;
-}
 
-.btn-jointeam{
+
+    .teamwork{
+        width: 400px;
+        
+    }
+.uploadcv{
     width: 300px;
-    border:none;
-    padding: 12px 0;
-    border-radius: 12px;
-    color:#1a4f49;
-    font-weight: 900;
-
 }
+    .btn-apply{
+        background-color: #FFF;
+        color:#24508f;
+        border-radius: 12px;
+        width: 250px;
+        border:none;
+        padding: 12px;
+    }

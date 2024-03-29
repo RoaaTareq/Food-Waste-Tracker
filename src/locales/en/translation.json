@@ -22,7 +22,21 @@
     "Hospital":"Hospitals",
     "Hotel":"Hotel",
     "useful":"Useful link",
-    "Follow":"Follow Us"
+    "Follow":"Follow Us",
+    "vision":"Our Vision",
+    "mission":"Our Mision",
+    "goals":"Our Value",
+    "vision-text":" To create a world where food is valued, resources are used efficiently, and communities thrive in a sustainable environment.",
+    "mission-text":" Our mission is to develop innovative technologies and solutions that empower individuals and organizations to track, manage, and minimize food waste, thereby fostering a more sustainable and equitable food system. We are committed to driving positive social and environmental impact while delivering value to our stakeholders.",
+    "goals-text":"Our company is driven by a core set of values: sustainability, innovation, integrity, empowerment, collaboration, responsibility, and quality. These values underpin our mission to reduce food waste, empower individuals and organizations, and create a positive impact on society and the environment.",
+    "vacancy":"Vacancy",
+    "join":"Join Food Limit Team",
+    "upload":"Upload cv",
+    "upload-text":"Currently no open positions, but we welcome you to submit your CV for future opportunities. Click 'Apply Now' to share your credentials. Thank you for considering us!",
+    "btn-upload":"Upload CV",
+    "job-title":"Software Enginner",
+    "job-text":"A software engineer applies engineering principles to design, develop, maintain, test, and evaluate software and systems. They create efficient and functional software solutions to meet user or client needs. Responsibilities include software development, design, testing, maintenance, collaboration with team members, problem-solving, and documentation. Software engineers specialize in domains such as web development, mobile application development, and artificial intelligence. They work in industries like technology, finance, healthcare, and entertainment, staying updated with the latest technologies and best practices.",
+    "btn-apply":"Apply Now "
 
 
   }

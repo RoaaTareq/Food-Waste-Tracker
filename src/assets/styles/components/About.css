@@ -2,21 +2,15 @@
     color:#FFF
 }
 .vision-img{
-    width: 100px;
-    padding: 12px;
-    margin: 12px auto;
-    display: flex;
+    width: 300px;
+    padding: 82px;
+    
 }
 .title-about{
     text-align: center;
     margin: 12px 0;
 }
-.vision-text{
-    text-align: center;
-}
-.main_title{
-    text-align: center;
-}
+
 .line-vision{
     color:orange;
     width: 17rem;

@@ -23,9 +23,9 @@ const Header = () => {
                     </div>
                     
                     <ul className="Main-list">
-                        <li>{t('home')}</li>
-                        <li>{t('about')}</li>
-                        <li>{t('career')}</li>
+                    <Link to="/">  <li>{t('home')}</li></Link>
+                    <Link to="/about">   <li>{t('about')}</li></Link>
+                    <Link to="/career"> <li>{t('career')}</li></Link>
                         <li>{t('contact')}</li>
                     </ul>
                     <div className="d-flex align-items-center gap-3">
