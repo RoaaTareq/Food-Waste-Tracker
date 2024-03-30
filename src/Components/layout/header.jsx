@@ -26,7 +26,7 @@ const Header = () => {
                     <Link to="/">  <li>{t('home')}</li></Link>
                     <Link to="/about">   <li>{t('about')}</li></Link>
                     <Link to="/career"> <li>{t('career')}</li></Link>
-                        <li>{t('contact')}</li>
+                    <Link to="/contact">    <li>{t('contact')}</li></Link>
                     </ul>
                     <div className="d-flex align-items-center gap-3">
                         <LanguageSwitcher />

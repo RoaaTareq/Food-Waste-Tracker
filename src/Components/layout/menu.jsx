@@ -32,7 +32,7 @@ const BurgerMenu = () => {
         <ul className="burger-menu-list">
           <li>  <Link to="/" onClick={closeMenu}>{t('home')}</Link></li>
           <li>  <Link to="/about" onClick={closeMenu}>{t('about')}</Link></li>
-          <li>  <Link to="/" onClick={closeMenu}>{t('contact')}</Link></li>
+          <li>  <Link to="/contact" onClick={closeMenu}>{t('contact')}</Link></li>
           <li>  <Link to="/career" onClick={closeMenu}>{t('career')}</Link></li>
         <Switcherlang/>
         </ul>

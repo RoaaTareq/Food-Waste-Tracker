@@ -6,6 +6,7 @@ import Home from './Components/Home/home';
 import About from './Components/About/About'
 import Footer from './Components/layout/footer';
 import Career from './Components/Career/career'
+import Contact from './Components/Contact/contact'
 import LoginPage from './Components/Home/LoginPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/career" element={<Career />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<LoginPage />} />
           {/* Other routes */}
           {/* Ensure that you have defined other routes as well */}
