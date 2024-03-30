@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import "../../assets/styles/components/Navbar.css";
 import '../../assets/styles/global/global.css'
 import { Link } from "react-router-dom";
+import Switcherlang from '../layout/LanguageSwitcher'
 
 const BurgerMenu = () => {
   const { t , i18n } = useTranslation();
@@ -13,10 +14,14 @@ const BurgerMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="burger-menu">
      <div className="d-flex justify-content-between">
-     <Link to="/">
+     <Link to="/" onClick={closeMenu}>
       <h1>Food <sub>Limit</sub></h1>
       </Link>
       <button className="burger-menu-button" onClick={toggleMenu}>
@@ -25,11 +30,11 @@ const BurgerMenu = () => {
      </div>
       {isOpen && (
         <ul className="burger-menu-list">
-          <li><a href="#">{t('home')}</a></li>
-          <li><a href="#">{t('about')}</a></li>
-          <li><a href="#">{t('contact')}</a></li>
-          <li><a href="#">{t('career')}</a></li>
-          {/* Add more menu items as needed */}
+          <li>  <Link to="/" onClick={closeMenu}>{t('home')}</Link></li>
+          <li>  <Link to="/about" onClick={closeMenu}>{t('about')}</Link></li>
+          <li>  <Link to="/" onClick={closeMenu}>{t('contact')}</Link></li>
+          <li>  <Link to="/career" onClick={closeMenu}>{t('career')}</Link></li>
+        <Switcherlang/>
         </ul>
       )}
     </div>
