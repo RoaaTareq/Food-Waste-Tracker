@@ -18,7 +18,7 @@ const Header = () => {
                 <div className="d-flex justify-content-between align-items-center">
                     <div>
                     <Link to="/">
-                        <h1 className="main-title">Food <sub>Limit</sub></h1>
+                        <h1 className="main-title">Food <sub>Watch</sub></h1>
                         </Link>
                     </div>
                     

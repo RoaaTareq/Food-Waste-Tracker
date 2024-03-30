@@ -36,20 +36,20 @@ const About = () => {
         <div className="screen-body-item">
           <div className="app-form">
             <div className="app-form-group">
-              <input className="app-form-control" placeholder="NAME" value="Krisantus Wanandi"/>
+              <input className="app-form-control" placeholder="Your Name" />
             </div>
             <div className="app-form-group">
-              <input className="app-form-control" placeholder="EMAIL"/>
+              <input className="app-form-control" placeholder="Your Email"/>
             </div>
             <div className="app-form-group">
-              <input className="app-form-control" placeholder="CONTACT NO"/>
+              <input className="app-form-control" placeholder="Contact NO"/>
             </div>
             <div className="app-form-group message">
-              <input className="app-form-control" placeholder="MESSAGE"/>
+              <input className="app-form-control" placeholder="Message"/>
             </div>
             <div className="app-form-group buttons">
-              <button className="app-form-button">CANCEL</button>
-              <button className="app-form-button">SEND</button>
+              <button className="app-form-button">Cancel</button>
+              <button className="app-form-button">Send</button>
             </div>
           </div>
         </div>

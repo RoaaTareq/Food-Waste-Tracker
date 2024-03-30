@@ -22,7 +22,7 @@ const BurgerMenu = () => {
     <div className="burger-menu">
      <div className="d-flex justify-content-between">
      <Link to="/" onClick={closeMenu}>
-      <h1>Food <sub>Limit</sub></h1>
+      <h1>Food <sub>Watch</sub></h1>
       </Link>
       <button className="burger-menu-button" onClick={toggleMenu}>
         ☰ {/* You can use any icon or text for the burger menu button */}
