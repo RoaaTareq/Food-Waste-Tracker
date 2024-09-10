@@ -15,10 +15,8 @@ function Home (){
         <Card
         title="Reports for cost savings and sustainability."
         image={ Cost}
-        
         className="custom-card "
       />
-      
         </div>
         <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
         <Card

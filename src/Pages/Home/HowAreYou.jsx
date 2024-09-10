@@ -30,9 +30,10 @@ function Home (){
         </div>
         <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
         <Card
-        title="Real-time tracking and data analytics"
+        title="Vision"
         image={Vision}
-    
+         text="To lead the healthcare sector in minimizing food waste, promoting sustainability, and ensuring optimal resource management, while contributing to a healthier planet and enhancing hospital efficiency."
+
         className="custom-card"
       />
         </div>
