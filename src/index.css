@@ -32,3 +32,13 @@ body{
   text-align: center;
 
 }
+
+@media (max-width: 575.98px) {
+  .custom-card{
+    width: 100%;
+ }
+}
+ /* Small devices (landscape phones, 576px and up) */
+ @media (min-width: 576px) and (max-width: 767.98px) {
+  
+ }
