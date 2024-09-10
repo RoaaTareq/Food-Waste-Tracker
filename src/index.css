@@ -7,3 +7,28 @@
 body{
   font-family:'Nunito Sans' !important;
 }
+.image-card{
+  width: 100px;
+  display: flex;
+  margin: auto;
+}
+
+.custom-card{
+  padding: 40px;
+    border-radius: 20px !important;
+    margin: 12px 0;
+    width: 400px;
+    border-top:3px solid rgb(1, 1, 59) !important;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px hsla(220, 6%, 90%, .66), 0 0 8px rgba(228, 231, 236, .3);
+}
+.card-title{
+ font-size: 20px;
+
+ text-align: center;
+}
+.title{
+  margin: 20px 0;
+  text-align: center;
+
+}
