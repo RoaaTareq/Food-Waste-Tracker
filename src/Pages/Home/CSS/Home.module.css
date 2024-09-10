@@ -17,7 +17,13 @@
     margin: 12px 0;
 }
 
-
+.about{
+    background-color: rgb(30, 139, 195);
+    padding: 50px;
+  }
+.Features{
+    padding: 50px;
+}
 /* Extra small devices (phones, 0px and up) */
 @media (max-width: 575.98px) {
    .Main-title{
