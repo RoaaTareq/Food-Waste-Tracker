@@ -11,14 +11,14 @@ function Home (){
     <div className="container">
         <h1 className='title'>Key Features</h1>
     <div className="row align-items-center ">
-        <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <Card
         title="Reports for cost savings and sustainability."
         image={ Cost}
         className="custom-card "
       />
         </div>
-        <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <Card
         title="Food waste monitoring and evalutaing"
         image={Monitoring}
@@ -26,7 +26,7 @@ function Home (){
         className="custom-card "
       />
         </div>
-        <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <Card
         title="Real-time tracking and data analytics"
         image={RealTime}

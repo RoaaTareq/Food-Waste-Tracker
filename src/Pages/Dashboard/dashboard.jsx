@@ -1,9 +1,13 @@
 import React from'react'
+import SidebarDashboard from './Layout/Sidebar'
 
 function Home() {
     return(
         <>
-        kkk
+        <SidebarDashboard/>
+        <section class="home-section">
+    <div class="text">Dashboard</div>
+  </section>
         </>
     )
 }
