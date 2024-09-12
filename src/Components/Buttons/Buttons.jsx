@@ -6,7 +6,7 @@ const Button = ({ children, onClick, type = 'button', className = '', disabled =
   return (
     <button
       type={type}
-      className={`btn ${className}`} // You can customize the className to support different styles
+      className={`${className}`} // You can customize the className to support different styles
       onClick={onClick}
       disabled={disabled}
     >
