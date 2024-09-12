@@ -11,7 +11,8 @@ function App() {
   return (
 <>
 {/* <Home/> */}
-<AdminDashboard/>
+{/* <AdminDashboard/> */}
+<HospitalDashboard/>
 </>
     // <Router>
     //   <Routes>
