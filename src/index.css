@@ -285,3 +285,20 @@ body{
     display: none;
   }
 }
+/* In your CSS file (e.g., styles.css) */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden; /* To make sure the border radius applies to the content */
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
+}

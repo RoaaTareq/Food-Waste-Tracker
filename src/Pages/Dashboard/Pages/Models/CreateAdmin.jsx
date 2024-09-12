@@ -37,10 +37,11 @@ function AdminRegister() {
 
   return (
     <div>
-      <h2>Admin Registration</h2>
+    
       {error && <p style={{ color: 'red' }}>{error.message}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
       <form onSubmit={handleRegister} className={styles['form-admin']}>
+      <h2>Admin Registration</h2>
         <Input
           type="text"
           name="name"
