@@ -1,6 +1,7 @@
 import React from'react'
 import SidebarDashboard from './Layout/Sidebar'
 import Admin from './Pages/Admin'
+import Category from './Category/Category'
 
 function Home() {
     return(
@@ -8,7 +9,8 @@ function Home() {
         <SidebarDashboard/>
         <section class="home-section">
   <div className="container">
-    <Admin/>
+    {/* <Admin/> */}
+    <Category/>
   </div>
   </section>
         </>

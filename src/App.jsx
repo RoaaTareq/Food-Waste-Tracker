@@ -6,13 +6,15 @@ import EmployeeDashboard from './Pages/Employee/employee';
 // import Login from './Pages/Login';
 import ProtectedRoute from '../src/Route/ProtectedRoute';
 import Home from './Pages/Home/Home'
+import Category from './Pages/Dashboard/Category/Modeles/CreateCategory';
 
 function App() {
   return (
 <>
 {/* <Home/> */}
-{/* <AdminDashboard/> */}
-<HospitalDashboard/>
+<AdminDashboard/>
+{/* <HospitalDashboard/> */}
+
 </>
     // <Router>
     //   <Routes>
