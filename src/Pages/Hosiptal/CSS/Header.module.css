@@ -15,3 +15,34 @@
     justify-content: flex-end;
         
 }
+
+.form-admin{
+    display: flex;
+    background-color: #FFF;
+    border-radius: 12px;
+    padding: 20px;
+    width: 500px;
+    flex-direction: column;
+    margin: auto;
+    position: absolute;
+    z-index: 999999;
+    right: 0%;
+    left: 0;
+    transform: translate(10px, 10px);
+}
+
+.custom-input-class{
+    align-items: flex-start;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 14px;
+    gap: 8px;
+    gap: var(--spacing-2, 8px);
+    height: 70px;
+    margin: 10px 0;
+    padding: 12px 16px;
+    padding: 12px var(--spacing-4, 16px);
+
+}
