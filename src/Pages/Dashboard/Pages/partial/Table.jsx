@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Table from '../../../../Components/Table/Table';
+import AdminUpdate from '../../Pages/Models/EditAdmin';
 
 const TableData = () => {
   const [data, setData] = useState([
@@ -7,31 +8,46 @@ const TableData = () => {
     { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
   ]);
 
+  const [isEditing, setIsEditing] = useState(false); // To toggle between Table and Form
+  const [selectedRow, setSelectedRow] = useState(null); // To store the row being edited
+
   const columns = [
     { label: 'Name', key: 'name' },
     { label: 'Email', key: 'email' }
   ];
 
   const handleEdit = (row) => {
-    console.log('Edit row:', row);
-    // Add your edit logic here
+    setSelectedRow(row); // Store the row's data for editing
+    setIsEditing(true);  // Toggle to the AdminUpdate form
   };
 
   const handleDelete = (row) => {
-    console.log('Delete row:', row);
-    // Add your delete logic here
     setData(data.filter(item => item.id !== row.id)); // Example delete logic
+  };
+
+  const handleFormSubmit = (updatedData) => {
+    // Update the data with the newly edited row
+    setData(data.map(item => (item.id === updatedData.id ? updatedData : item)));
+    setIsEditing(false); // Go back to table view after edit
   };
 
   return (
     <div>
       <h1>Admin Info</h1>
-      <Table
-        columns={columns}
-        data={data}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
+      {isEditing ? (
+        <AdminUpdate
+          formData={selectedRow} // Pass the selected row data to form
+          onSubmit={handleFormSubmit} // Handle form submission
+          onCancel={() => setIsEditing(false)} // Handle form cancellation
+        />
+      ) : (
+        <Table
+          columns={columns}
+          data={data}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      )}
     </div>
   );
 };
