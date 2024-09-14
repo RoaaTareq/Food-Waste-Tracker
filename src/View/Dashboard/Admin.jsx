@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../Dashboard/Partial/HeaderCategory'
-import Table from '../Dashboard/Partial/TableCategory'
+import Header from '../Dashboard/Partial/HeaderAdmin'
+import Table from '../Dashboard/Partial/TableAdmin'
 
-function Hoispital(){
+function Admin(){
     return(
       <section>
         <div className="container">
@@ -12,4 +12,4 @@ function Hoispital(){
       </section>
     )
 }
-export default Hoispital
+export default Admin
