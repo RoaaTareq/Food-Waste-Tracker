@@ -320,3 +320,32 @@ li{
  
   margin: 0 6px;
 }
+
+.login-container{
+  margin: auto;
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  margin: 12px auto;
+}
+.input-custom{
+  padding: 10px;
+  margin: 6px 0;
+  border:none;
+  width: 100%;
+
+}
+.error-message{
+  color: red;
+}
+.btn-action{
+  background-color: #11101d;
+  color: white;
+  font-weight: 400;
+  padding: 15px;
+  border-radius: 12px;
+  max-width:  200px;
+  width: 100%;
+}
