@@ -302,3 +302,21 @@ body{
 .table th {
   background-color: #f4f4f4;
 }
+
+.navbar{
+  background-color: #11101d ;
+  padding: 20px;
+}
+a{
+  text-decoration: none !important;
+  color:white !important;
+  font-weight: 900;
+}
+.navbar-links {
+  display: flex;
+  list-style: none;
+}
+li{
+ 
+  margin: 0 6px;
+}

@@ -1,7 +1,7 @@
 // Navbar.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './Navbar.scss'; // Assuming you're using SCSS for styling
+
 
 const Navbar = ({ logo, links, className = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,15 +12,16 @@ const Navbar = ({ logo, links, className = '' }) => {
 
   return (
     <nav className={`navbar ${className}`}>
-      <div className="navbar-logo">
+    <div className="container">
+    <div className="navbar-logo ">
         <a href="/">
           <img src={logo} alt="Logo" />
         </a>
       </div>
-
+{/* 
       <button className="navbar-toggle" onClick={toggleMobileMenu}>
         ☰
-      </button>
+      </button> */}
 
       <ul className={`navbar-links ${isMobileMenuOpen ? 'active' : ''}`}>
         {links.map((link, index) => (
@@ -31,6 +32,7 @@ const Navbar = ({ logo, links, className = '' }) => {
           </li>
         ))}
       </ul>
+    </div>
     </nav>
   );
 };
