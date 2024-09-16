@@ -35,7 +35,7 @@ function SidebarDashboard() {
       </div>
       <ul className="nav-list">
         <li>
-          <Link to="/">
+          <Link to="/dashboard">
             <i className="bx bx-grid-alt"></i>
             <span className="links_name">Admin</span>
           </Link>
