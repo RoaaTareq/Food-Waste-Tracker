@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../../../Components/Buttons/Buttons';
+import Button from '../../../Components/Buttons/Buttons'
 // import Create from '../Models/CreateAdmin'; // Assuming Create is in the same folder
 // import styles from '../../CSS/Header.module.css';
 
@@ -12,17 +12,13 @@ function Header() {
 
   return (
     <div>
-      <div className={styles['button-container']}>
-        <Button onClick={handleButtonClick} className={styles['btn-add']}>
-          {showForm ? 'Close Form' : 'Add Admin +'}
+      <div className='button-container'>
+        <Button  className='btn-add'>
+         Add Admin +
         </Button>
       </div>
       
-      {showForm && (
-        <div className={styles['form-container']}>
-          <Create />
-        </div>
-      )}
+     
     </div>
   );
 }

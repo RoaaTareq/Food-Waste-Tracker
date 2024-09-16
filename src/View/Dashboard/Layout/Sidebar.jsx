@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-function SidebarDashboard({ onSelectView }) {
+function SidebarDashboard() {
   useEffect(() => {
     const sidebar = document.querySelector(".sidebar");
     const closeBtn = document.querySelector("#btn");
@@ -33,25 +34,25 @@ function SidebarDashboard({ onSelectView }) {
         <i className="bx bx-menu" id="btn"></i>
       </div>
       <ul className="nav-list">
-        <li onClick={() => onSelectView('Admin')}>
-          <a href="#">
+        <li>
+          <Link to="/">
             <i className="bx bx-grid-alt"></i>
             <span className="links_name">Admin</span>
-          </a>
+          </Link>
           <span className="tooltip">Admin</span>
         </li>
-        <li onClick={() => onSelectView('Category')}>
-          <a href="#">
+        <li>
+          <Link to="category">
             <i className="bx bx-user"></i>
             <span className="links_name">Category</span>
-          </a>
+          </Link>
           <span className="tooltip">Category</span>
         </li>
-        <li onClick={() => onSelectView('Hospital')}>
-          <a href="#">
+        <li>
+          <Link to="hoispital">
             <i className="bx bx-chat"></i>
             <span className="links_name">Hospital</span>
-          </a>
+          </Link>
           <span className="tooltip">Hospital</span>
         </li>
         <li className="profile">
