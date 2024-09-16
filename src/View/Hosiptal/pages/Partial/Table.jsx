@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Table from '../../../../Components/Table/Table';
-import HospitalUpdate from '../Models/EditHospital'; // Import the update form
+import HospitalUpdate from '../Models/EditEmployee'; // Import the update form
 
 const TableData = () => {
   const [data, setData] = useState([
@@ -36,7 +36,7 @@ const TableData = () => {
 
   return (
     <div>
-      <h1>Hospital Info</h1>
+      <h1>Employee  Info</h1>
 
       {isEditing ? (
         <HospitalUpdate

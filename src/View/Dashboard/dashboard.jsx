@@ -15,7 +15,7 @@ function Dashboard() {
           <Routes>
             <Route path="/" element={<Admin />} />
             <Route path="/category" element={<Category />} />
-            <Route path="hoispital" element={<Hoispital />} />
+            <Route path="/hoispital" element={<Hoispital />} />
           </Routes>
         </div>
       </section>

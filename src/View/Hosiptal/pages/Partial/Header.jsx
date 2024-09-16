@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../../../Components/Buttons/Buttons';
 import styles from '../../CSS/Header.module.css';
-import HospitalRegister from '../Models/CreateHosiptal'; // Import the HospitalRegister form
+import EmployeeRegister from '../Models/CreateEmployee'; // Import the HospitalRegister form
 
 function Header() {
   const [showForm, setShowForm] = useState(false);
@@ -14,12 +14,12 @@ function Header() {
     <div>
       <div className={styles['button-container']}>
         <Button className={styles['btn-add']} onClick={handleAddHospitalClick}>
-          Add Hospital +
+          Add Employee +
         </Button>
       </div>
 
       {/* Conditionally render the form based on showForm */}
-      {showForm && <HospitalRegister />}
+      {showForm && <EmployeeRegister />}
     </div>
   );
 }

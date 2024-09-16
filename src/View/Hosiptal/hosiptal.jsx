@@ -1,16 +1,22 @@
-import React from'react'
-import SidebarDashboard from '../Dashboard/Layout/Sidebar'
-import Hosiptal from './pages/Partial/Hospital'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import SidebarDashboard from './Layout/Sidebar';
+import Hoispital from '../Hosiptal/pages/Partial/Hospital';
 
-function Home() {
-    return(
-        <>
-        <SidebarDashboard/>
+function HoispitalDashboard() {
+  return (
+    <>
+      <SidebarDashboard />
+      <section className="home-section">
         <div className="container">
-    <Hosiptal/>
-  </div>
-        </>
-    )
+          {/* Routes for dashboard pages inside the home layout */}
+          <Routes>
+            <Route path="/employee" element={<Hoispital />} />
+          </Routes>
+        </div>
+      </section>
+    </>
+  );
 }
 
-export default Home
+export default HoispitalDashboard;

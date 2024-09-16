@@ -6,7 +6,7 @@ import Button from '../../../../Components/Buttons/Buttons'; // Reusable Button 
 // Import the service
 import styles from '../../CSS/Header.module.css';
 
-function HosiptalRegister() {
+function EmployeeRegister() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,7 +28,7 @@ function HosiptalRegister() {
       {error && <p style={{ color: 'red' }}>{error.message}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
       <form  className={styles['form-admin']}>
-      <h2> Hospital Registration</h2>
+      <h2> Create  Employee</h2>
         <Input
           type="text"
           name="name"
@@ -71,4 +71,4 @@ function HosiptalRegister() {
   );
 }
 
-export default HosiptalRegister;
+export default EmployeeRegister;

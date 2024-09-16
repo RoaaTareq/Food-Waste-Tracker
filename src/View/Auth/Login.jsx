@@ -22,7 +22,7 @@ const Login = () => {
     if (email === 'test@example.com' && password === 'password123') {
       console.log('Login successful');
       // Redirect to dashboard on successful login
-      navigate('/dashboard'); // Change '/dashboard' to your actual dashboard route
+      navigate('/hoispital'); // Change '/dashboard' to your actual dashboard route
     } else {
       setError('Invalid email or password');
     }
