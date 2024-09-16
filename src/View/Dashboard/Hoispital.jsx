@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../Dashboard/Partial/HeaderCategory'
-import Table from '../Dashboard/Partial/TableCategory'
+import Header from '../Dashboard/Partial/HeaderHoispital'
+import Table from '../Dashboard/Partial/TableHoipital'
 
 function Hoispital(){
     return(
