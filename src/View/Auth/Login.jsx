@@ -1,29 +1,45 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for programmatic navigation
-import Input from '../../Components/Inputs/Input'; // Assuming Input.js is in the same folder
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
+import Input from '../../Components/Inputs/Input';
 
-const Login = () => {
+const Login = ({ updateAuth }) => { // Receive updateAuth function as a prop
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
 
-    // Basic validation
     if (!email || !password) {
       setError('Both email and password are required');
       return;
     }
 
-    // Example login logic (replace with your actual authentication logic)
-    if (email === 'test@example.com' && password === 'password123') {
-      console.log('Login successful');
-      // Redirect to dashboard on successful login
-      navigate('/hoispital'); // Change '/dashboard' to your actual dashboard route
-    } else {
+    try {
+      // Make a request to the login API
+      const response = await axios.post('http://localhost:8000/api/login', { email, password });
+
+      const { access_token, user } = response.data;
+
+      // Store token and user data in localStorage
+      localStorage.setItem('token', access_token);
+      localStorage.setItem('user', JSON.stringify(user));
+
+      // Update authentication status immediately
+      updateAuth(); 
+
+      // Redirect based on user role
+      if (user.role === 'admin') {
+        navigate('/dashboard');
+      } else if (user.role === 'hospital_owner') {
+        navigate('/hoispital');
+      } else {
+        navigate('/employee-dashboard');
+      }
+    } catch (err) {
       setError('Invalid email or password');
     }
   };
