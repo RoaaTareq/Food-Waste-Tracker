@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Button from "../../../Components/Buttons/Buttons";
 import CreateCategory from "../Models/CreateCategory"; // Import the CreateCategory form
 
-function HeaderCategory() {
+function HeaderCategory({ refreshTable }) {  // Pass refreshTable as a prop
     const [showForm, setShowForm] = useState(false); // State to manage form visibility
     const formRef = useRef(null);
 
@@ -31,6 +31,12 @@ function HeaderCategory() {
         };
     }, [showForm]);
 
+    // This function will be passed to CreateCategory and called after a successful category creation
+    const handleSuccess = () => {
+        setShowForm(false); // Close the form
+        refreshTable();     // Refresh the table data
+    };
+
     return (
         <div>
             <div className="d-flex justify-content-between">
@@ -45,7 +51,7 @@ function HeaderCategory() {
             {showForm && (
                 <div className="overlay">
                     <div className="form-container" ref={formRef}>
-                        <CreateCategory />
+                        <CreateCategory onSuccess={handleSuccess} /> {/* Pass the success handler */}
                     </div>
                 </div>
             )}
