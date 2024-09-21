@@ -18,11 +18,13 @@
 }
 
 .about{
-    background-color: rgb(30, 139, 195);
+    background-color: #11101d;
     padding: 50px;
+    color: white;
   }
 .Features{
     padding: 50px;
+    background-color: #F5F5F5;
 }
 /* Extra small devices (phones, 0px and up) */
 @media (max-width: 575.98px) {

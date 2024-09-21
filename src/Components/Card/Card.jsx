@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Card = ({ title, image, description, children, className = '', onButtonClick }) => {
   return (
-    <div className={`card ${className}`}>
+    <div className={`card  ratio-16x9 ${className}`}>
       {image && (
         <div className="card-image">
           <img src={image} alt={title} className='image-card' />

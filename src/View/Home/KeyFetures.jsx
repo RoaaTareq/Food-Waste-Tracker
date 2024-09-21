@@ -9,27 +9,36 @@ function Home (){
     return(
     <section className={styles['Features']}>
     <div className="container">
-        <h1 className='title'>Key Features</h1>
-    <div className="row align-items-center ">
-        <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h5 >What you get with Waste Track</h5>
+        <span>Waste Track provides the insight and tools you need to reduce food waste and run a more efficient kitchen.</span>
+    <div className="d-flex">
+        <div >
         <Card
-        title="Reports for cost savings and sustainability."
-        image={ Cost}
+        title="Real-time insights"
+       description="Track food waste as it happens"
         className="custom-card "
       />
         </div>
-        <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div >
         <Card
-        title="Food waste monitoring and evalutaing"
-        image={Monitoring}
+        title="Data-driven recommendations"
+       
+    description="AI-powered insights that help you reduce waste"
+        className="custom-card "
+      />
+        </div>
+        <div >
+        <Card
+        title="Reduce food waste"
+         description="Save up to 6% on food costs"
     
-        className="custom-card "
+        className="custom-card"
       />
         </div>
-        <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div >
         <Card
-        title="Real-time tracking and data analytics"
-        image={RealTime}
+        title="Uncover inefficiencies"
+        description="Optimize inventory and purchasing"
     
         className="custom-card"
       />

@@ -20,19 +20,29 @@ body{
   text-align: center;
 }
 .custom-card{
-  padding: 40px;
-    border-radius: 20px !important;
+  padding: 20px;
+    border-radius: 8px !important;
     margin: 12px 0;
-    width: 400px;
-    border-top:3px solid rgb(1, 1, 59) !important;
+    width: 100%; /* Set to 100% of the container */
+  max-width: 223px; /* Ensure it doesn't exceed a certain width */
+    height: 156px;
+    text-align: left;
+    margin: 0 6px;
+
     box-sizing: border-box;
     box-shadow: 0 2px 5px hsla(220, 6%, 90%, .66), 0 0 8px rgba(228, 231, 236, .3);
 }
-.card-title{
- font-size: 20px;
-
- text-align: center;
+.card-description{
+  font-size: 14px;
+  width: 189px;
+  height: 42px;
 }
+.card-title{
+ font-size: 14px;
+ font-weight: bold;
+ width: 189px;
+
+ }
 .title{
   margin: 20px 0;
   text-align: center;

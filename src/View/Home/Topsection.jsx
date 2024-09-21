@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './CSS/Home.module.css'
-import Golbal from '../../assets/Images/apple-globe-removebg-preview.png'
+import Golbal from '../../assets/Images/Global.png'
 function Home (){
     return(
     <section className={styles['Home-section']}>
