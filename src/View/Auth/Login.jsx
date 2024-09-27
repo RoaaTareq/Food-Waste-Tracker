@@ -37,7 +37,7 @@ const Login = ({ updateAuth }) => { // Receive updateAuth function as a prop
       if (user.role === 'admin') {
         navigate('/dashboard');
       } else if (user.role === 'hospital') {
-        navigate('/hospital');
+        navigate('/hoispital');
       } else {
         navigate('/employee');
       }

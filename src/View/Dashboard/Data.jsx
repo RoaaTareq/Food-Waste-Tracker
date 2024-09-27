@@ -128,49 +128,36 @@ const WasteFoodDashboard = () => {
 
   return (
     <div>
-      <h1>Waste Food Analysis Dashboard</h1>
+      <h1 className='pt-5 pb5'>Waste Food Analysis Dashboard</h1>
 
-    <div className="d-flex">
-    <div style={{ width: '500px', margin: '0 auto' }}>
-        <h2>1. Waste Trends Over Time</h2>
+    <div className="d-flex m-auto justify-content-between">
+    <div style={{ width: '500px', margin: '30 auto' }} className='mt-3 mb-5'>
+      
         <Line data={wasteTrendsData} options={{ responsive: true }} />
       </div>
-      <div style={{ width: '500px', margin: '0 auto' }}>
-        <h2>2. Food Waste vs Inventory</h2>
+      <div style={{ width: '500px', margin: '30 auto' }} className='mt-3 mb-5'>
+       
         <Line data={inventoryWasteData} options={{ responsive: true }} />
       </div>
 
-      {/* <div style={{ width: '500px', margin: '0 auto' }}>
-        <h2>2. Category-Wise Waste Distribution</h2>
-        <Doughnut data={categoryWasteData} options={{ responsive: true }} />
-      </div> */}
+    
     </div>
 
-      <div className="d-flex">
-      <div style={{ width: '500px', margin: '0 auto' }}>
-        <h2>3. Hospital-Specific Waste Comparison</h2>
+      <div className="d-flex justify-content-between">
+      <div style={{ width: '500px', margin: '30 auto' }} className='mt-3 mb-5' >
+      
         <Bar data={hospitalWasteData} options={{ responsive: true, scales: { y: { beginAtZero: true } } }} />
       </div>
 
-      <div style={{ width: '500px', margin: '0 auto' }}>
-        <h2>4. Waste Per Employee</h2>
+      <div style={{ width: '500px', margin: '30 auto' }} className='mt-3 mb-5'>
+     
         <Bar data={employeeWasteData} options={{ responsive: true, scales: { y: { beginAtZero: true } }, plugins: { legend: { position: 'top' } } }} />
       </div>
       </div>
 
       
 
-    <div className='d-flex'>
-    <div style={{ width: '500px', margin: '0 auto' }}>
-        <h2>6. Cost Analysis of Wasted Food</h2>
-        <Bar data={costWasteData} options={{ responsive: true, scales: { y: { beginAtZero: true } } }} />
-      </div>
-
-    <div style={{ width: '300px', margin: '0 auto' }}>
-        <h2>2. Category-Wise Waste Distribution</h2>
-        <Doughnut data={categoryWasteData} options={{ responsive: true }} />
-      </div> 
-    </div>
+   
     </div>
   );
 };

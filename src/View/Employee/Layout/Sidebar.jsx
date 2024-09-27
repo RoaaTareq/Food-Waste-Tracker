@@ -34,33 +34,26 @@ function SidebarDashboard() {
         <i className="bx bx-menu" id="btn"></i>
       </div>
       <ul className="nav-list">
-      <li>
-          <Link to="data">
-            <i className="bx bx-grid-alt"></i>
-            <span className="links_name">data</span>
-          </Link>
-          <span className="tooltip">data</span>
-        </li>
-        <li>
+        {/* <li>
           <Link to="/dashboard">
             <i className="bx bx-grid-alt"></i>
             <span className="links_name">Admin</span>
           </Link>
           <span className="tooltip">Admin</span>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link to="category">
             <i className="bx bx-user"></i>
             <span className="links_name">Category</span>
           </Link>
           <span className="tooltip">Category</span>
-        </li>
+        </li> */}
         <li>
-          <Link to="hoispital">
+          <Link to="employee">
             <i className="bx bx-chat"></i>
-            <span className="links_name">Hospital</span>
+            <span className="links_name">Employee</span>
           </Link>
-          <span className="tooltip">Hospital</span>
+          <span className="tooltip">Employee</span>
         </li>
         <li className="profile">
           <div className="profile-details">

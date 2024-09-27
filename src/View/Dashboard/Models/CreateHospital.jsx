@@ -88,6 +88,7 @@ function CreateHospital() {
                 value={hospitalName}
                 onChange={(e) => setHospitalName(e.target.value)}
                 placeholder="Hospital Name"
+                  className="form-control mt-3"
                 required
             />
             <Input
@@ -95,6 +96,7 @@ function CreateHospital() {
                 value={hospitalAddress}
                 onChange={(e) => setHospitalAddress(e.target.value)}
                 placeholder="Hospital Address"
+                className="form-control mt-3"
                 required
             />
             <Input
@@ -102,6 +104,7 @@ function CreateHospital() {
                 value={hospitalPhone}
                 onChange={(e) => setHospitalPhone(e.target.value)}
                 placeholder="Hospital Phone"
+                  className="form-control mt-3"
                 required
             />
 
@@ -111,6 +114,7 @@ function CreateHospital() {
                 value={ownerName}
                 onChange={(e) => setOwnerName(e.target.value)}
                 placeholder="Owner Name"
+                className="form-control mt-3"
                 required
             />
             <Input
@@ -118,6 +122,7 @@ function CreateHospital() {
                 value={ownerEmail}
                 onChange={(e) => setOwnerEmail(e.target.value)}
                 placeholder="Owner Email"
+                className="form-control mt-3"
                 required
             />
             <Input
@@ -125,6 +130,7 @@ function CreateHospital() {
                 value={ownerPassword}
                 onChange={(e) => setOwnerPassword(e.target.value)}
                 placeholder="Owner Password"
+                className="form-control mt-3"
                 required
             />
             <Input
@@ -132,6 +138,7 @@ function CreateHospital() {
                 value={ownerPasswordConfirm}
                 onChange={(e) => setOwnerPasswordConfirm(e.target.value)}
                 placeholder="Confirm Password"
+                  className="form-control mt-3"
                 required
             />
 
