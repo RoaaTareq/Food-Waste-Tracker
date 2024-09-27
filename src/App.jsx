@@ -5,6 +5,7 @@ import Navbar from './View/Layout/Navbar';
 import Login from './View/Auth/Login';
 import Dashboard from './View/Dashboard/dashboard';
 import Hoispital from './View/Hosiptal/hosiptal';
+import Employee from './View/Employee/employee'
 import ProtectedRoute from '../src/Route/ProtectedRoute'; // Import the ProtectedRoute component
 
 // Function to check authentication
@@ -55,9 +56,12 @@ const App = () => {
         {/* Hospital Owner Protected Route */}
         <Route 
           path="/hoispital/*" 
-          element={<ProtectedRoute component={Hoispital} allowedRoles={['hospital_owner']} />} 
+          element={<ProtectedRoute component={Hoispital} allowedRoles={['hospital']} />} 
         />
-
+ <Route 
+          path="/employee/*" 
+          element={<ProtectedRoute component={Employee} allowedRoles={['employee']} />} 
+        />
         {/* Add more routes as needed */}
       </Routes>
     </Router>

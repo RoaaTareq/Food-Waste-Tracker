@@ -1,5 +1,4 @@
 .Home-section{
-    background-color:#11101d;
     color: rgb(255, 255, 255);
     position: relative;
     display: flex;
@@ -18,12 +17,16 @@
 }
 
 .about{
-    background-color: #11101d;
-    padding: 50px;
+    
+    padding: 100px;
     color: white;
   }
 .Features{
-    padding: 50px;
+    padding: 100px;
+    background-color: #F5F5F5;
+}
+.join{
+    padding: 100px;
     background-color: #F5F5F5;
 }
 /* Extra small devices (phones, 0px and up) */

@@ -72,16 +72,7 @@ function CreateCategory({ onSuccess }) {  // Receive the onSuccess callback as a
                 />
             </div>
 
-            <div className="form-group">
-                <Input
-                    type="text"
-                    id="categoryDescription"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="form-control mt-3"
-                    placeholder="Enter category description"
-                />
-            </div>
+          
 
             <Button type="submit" className="btn-add">
                 Submit

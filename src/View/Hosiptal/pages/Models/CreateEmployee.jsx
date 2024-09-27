@@ -1,74 +1,136 @@
-// src/pages/AdminRegister/AdminRegister.js
+import React, { useState } from "react";
+import axios from "axios";
 
-import React, { useState } from 'react';
-import Input from '../../../../Components/Inputs/Input'; // Reusable Input component
-import Button from '../../../../Components/Buttons/Buttons'; // Reusable Button component
-// Import the service
-import styles from '../../CSS/Header.module.css';
+function CreateEmployee() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [loading, setLoading] = useState(false);
 
-function EmployeeRegister() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: ''
-  });
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+        setSuccess('');
 
-  const handleChange = (e) => {
-   
-  };
+        try {
+            // Retrieve the token from localStorage
+            const token = localStorage.getItem('token');
+            // Retrieve the user from localStorage and parse it
+            const user = JSON.parse(localStorage.getItem('user'));
 
+            // Extract hospital_id from the user object
+            const hospital_id = user.hospital_id;
 
+            // Make the API call to create the employee
+            const response = await axios.post(
+                'http://localhost:8000/api/employees', 
+                {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    password: password,
+                    password_confirmation: passwordConfirm,
+                    hospital_id: hospital_id  // Pass the correct hospital_id
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`  // Include the token for authorization
+                    }
+                }
+            );
 
-  return (
-    <div>
-    
-      {error && <p style={{ color: 'red' }}>{error.message}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <form  className={styles['form-admin']}>
-      <h2> Create  Employee</h2>
-        <Input
-          type="text"
-          name="name"
-          placeholder="Enter your name"
-          value={formData.name}
-          onChange={handleChange}
-          className={styles['custom-input-class']}
-        />
-        <Input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          value={formData.email}
-          onChange={handleChange}
-          className={styles['custom-input-class']}
-        />
-        <Input
-          type="text"
-          name="address"
-          placeholder="Enter your password"
-          value={formData.address}
-          onChange={handleChange}
-          className={styles['custom-input-class']}
-        />
+            setSuccess('Employee created successfully!');
+            setName('');
+            setEmail('');
+            setPhone('');
+            setPassword('');
+            setPasswordConfirm('');
+        } catch (err) {
+            console.error(err);
+            if (err.response && err.response.data) {
+                setError(err.response.data.message || 'An error occurred while creating the employee.');
+            } else {
+                setError('An error occurred. Please try again.');
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
 
-<Input
-  type="tel"
-  name="phone"
-  placeholder="Enter your phone"
-  value={formData.phone}
-  onChange={handleChange}
-  className={styles['custom-input-class']}
-/>
+    return (
+        <div className="form-employee ">
+            <h2>Create New Employee</h2>
 
-        <Button type="submit" className={styles['btn-add']}>
-          Register
-        </Button>
-      </form>
-    </div>
-  );
+            {error && <div className="alert alert-danger">{error}</div>}
+            {success && <div className="alert alert-success">{success}</div>}
+
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Phone</label>
+                    <input
+                        type="tel"
+                        className="form-control"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={passwordConfirm}
+                        onChange={(e) => setPasswordConfirm(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <button type="submit" className="btn btn-primary" disabled={loading}>
+                    {loading ? 'Creating...' : 'Create Employee'}
+                </button>
+            </form>
+        </div>
+    );
 }
 
-export default EmployeeRegister;
+export default CreateEmployee;

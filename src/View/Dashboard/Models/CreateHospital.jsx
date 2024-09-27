@@ -13,23 +13,26 @@ function CreateHospital() {
     const [ownerPasswordConfirm, setOwnerPasswordConfirm] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [loading, setLoading] = useState(false);  // Loading state
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
+        setLoading(true); // Set loading to true
 
         // Get the token from localStorage (assuming it's stored there after login)
         const token = localStorage.getItem('token');
 
         if (!token) {
             setError("You are not authorized. Please login.");
+            setLoading(false);
             return;
         }
 
         try {
             // Send a POST request to the backend API to register the hospital and owner
-            const response = await axios.post('http://localhost:8000/api/hospitals', 
+            const response = await axios.post('http://127.0.0.1:8000/api/hospitals', 
                 {
                     hospital_name: hospitalName,
                     hospital_address: hospitalAddress,
@@ -66,6 +69,8 @@ function CreateHospital() {
             } else {
                 setError('An error occurred. Please try again.');
             }
+        } finally {
+            setLoading(false); // Stop the loading state
         }
     };
 
@@ -130,8 +135,8 @@ function CreateHospital() {
                 required
             />
 
-            <Button type="submit" className="btn-add mt-3">
-                Submit
+            <Button type="submit" className="btn-add mt-3" disabled={loading}>
+                {loading ? 'Submitting...' : 'Submit'}
             </Button>
         </form>
     );

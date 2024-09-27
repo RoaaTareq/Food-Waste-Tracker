@@ -9,9 +9,9 @@ function Home (){
     return(
     <section className={styles['Features']}>
     <div className="container">
-        <h5 >What you get with Waste Track</h5>
-        <span>Waste Track provides the insight and tools you need to reduce food waste and run a more efficient kitchen.</span>
-    <div className="d-flex">
+        <h3 className='mt-4'>What you get with Waste Track ?</h3>
+       
+    <div className="d-flex m-auto">
         <div >
         <Card
         title="Real-time insights"

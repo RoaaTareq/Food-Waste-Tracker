@@ -40,17 +40,7 @@ function EditCategory({ rowData, onUpdate }) {
                 />
             </div>
 
-            <div className="form-group">
-                <Input
-                    type="email"
-                    id="categoryEmail"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="form-control mt-3"
-                    placeholder="Enter email"
-                    required
-                />
-            </div>
+           
 
             <Button type="submit" className="btn-add">
                 Submit

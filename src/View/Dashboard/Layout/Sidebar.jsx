@@ -34,6 +34,13 @@ function SidebarDashboard() {
         <i className="bx bx-menu" id="btn"></i>
       </div>
       <ul className="nav-list">
+      <li>
+          <Link to="/data">
+            <i className="bx bx-grid-alt"></i>
+            <span className="links_name">data</span>
+          </Link>
+          <span className="tooltip">data</span>
+        </li>
         <li>
           <Link to="/dashboard">
             <i className="bx bx-grid-alt"></i>

@@ -13,7 +13,7 @@ const TableData = () => {
   // Define columns for the table
   const columns = [
     { label: 'Category Name', key: 'name' },
-    { label: 'Description', key: 'description' }
+    
   ];
 
   // Function to fetch categories from the API

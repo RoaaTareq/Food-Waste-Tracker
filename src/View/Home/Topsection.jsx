@@ -11,7 +11,7 @@ function Home (){
         <p  className={styles['Main-text']}>Empowering organizations to contribute to building a sustainable food system for everyone.</p>
         </div>
         <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            <img src={Golbal} alt="golbal" className='image w-100' />
+            <img src={Golbal} alt="golbal" className='image w-75' />
         </div>
     </div>
     </div>

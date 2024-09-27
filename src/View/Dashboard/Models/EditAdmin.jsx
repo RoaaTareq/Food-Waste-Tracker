@@ -31,7 +31,7 @@ function EditAdmin({ rowData, onUpdate }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form-admin">
             <h6>Edit Admin</h6>
 
             {/* Admin Name */}

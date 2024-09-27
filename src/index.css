@@ -6,13 +6,23 @@
 
 body{
   font-family:'Nunito Sans' !important;
-  background-color: rgb(244, 247, 249) !important;
+  background-color: rgb(8, 16, 40)!important;
+}
+.login-page{
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 56px 8px;
+  width: 100%;
+  min-height: 100vh;
 }
 
-
 .image-card{
-  width: 100px;
-  display: flex;
+  width: 30px;
+  /* display: flex; */
   margin: auto;
 }
 .title-about{
@@ -48,6 +58,7 @@ body{
   text-align: center;
 
 }
+
 
 @media (max-width: 575.98px) {
   .custom-card{
@@ -314,7 +325,7 @@ body{
 }
 
 .navbar{
-  background-color: #11101d ;
+  
   padding: 20px;
 }
 a{
@@ -332,17 +343,18 @@ li{
 }
 
 .login-container{
-  margin: auto;
-  max-width: 500px;
-  width: 100%;
-  padding: 20px;
-  background-color: white;
-  border-radius: 12px;
-  margin: 12px auto;
+  color: rgb(255, 255, 255);
+    background-color: rgb(11, 23, 57);
+    box-shadow: rgba(1, 5, 17, 0.3) 0px 8px 28px 0px;
+    width: 100%;
+    max-width: 460px;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 32px 28px;
+    border-radius: 12px
 }
 .input-custom{
   padding: 10px;
-  margin: 6px 0;
+  margin: 25px 0;
   border:none;
   width: 100%;
 
@@ -351,13 +363,39 @@ li{
   color: red;
 }
 .btn-action{
-  background-color: #11101d;
-  color: white;
-  font-weight: 400;
-  padding: 15px;
-  border-radius: 12px;
-  max-width:  200px;
-  width: 100%;
+  display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    font-family: "Mona Sans", sans-serif;
+    line-height: 1.75;
+    min-width: 64px;
+    width: 100%;
+    box-shadow: none;
+    color: rgb(255, 255, 255);
+    text-transform: initial;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    outline: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    margin: 25px 0;
+    text-decoration: none;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 4px;
+    background: linear-gradient(128.49deg, rgb(203, 60, 255) 19.86%, rgb(127, 37, 251) 68.34%);
+    padding: 8px 12px
 }
 .btn-add{
   width: 250px;
@@ -398,4 +436,29 @@ li{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 400px; /* Adjust as per your design */
   z-index: 1001; /* Ensure the form stays above the background */
+}
+
+.btn-join{
+  background-color: #30CC1A;
+  width: 135px;
+  border-radius: 12px;
+  padding: 12px;
+  border: none;
+}
+
+.footer{
+  
+  color: #ddd;
+  padding: 100px;
+  text-align: center;
+}
+
+.form-admin ,.form-employee{
+  background: white;
+    padding: 20px;
+    position: absolute;
+    width: 50%;
+    margin: auto;
+    left: 0;
+    right: 0;
 }

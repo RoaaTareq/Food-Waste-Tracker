@@ -22,10 +22,12 @@ const Login = ({ updateAuth }) => { // Receive updateAuth function as a prop
       // Make a request to the login API
       const response = await axios.post('http://localhost:8000/api/login', { email, password });
 
-      const { access_token, user } = response.data;
+      // Extract the correct token and user data from the response
+      const { access_token, user } = response.data;  // Change 'token' to 'access_token'
+      console.log(access_token);  // Debugging line to ensure token is correct
 
       // Store token and user data in localStorage
-      localStorage.setItem('token', access_token);
+      localStorage.setItem('token', access_token);  // Store the correct token
       localStorage.setItem('user', JSON.stringify(user));
 
       // Update authentication status immediately
@@ -34,18 +36,20 @@ const Login = ({ updateAuth }) => { // Receive updateAuth function as a prop
       // Redirect based on user role
       if (user.role === 'admin') {
         navigate('/dashboard');
-      } else if (user.role === 'hospital_owner') {
-        navigate('/hoispital');
+      } else if (user.role === 'hospital') {
+        navigate('/hospital');
       } else {
-        navigate('/employee-dashboard');
+        navigate('/employee');
       }
     } catch (err) {
       setError('Invalid email or password');
     }
-  };
+};
+
 
   return (
-    <div className="login-container">
+    <section className='login-page'>
+         <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div className="form-group">
@@ -77,6 +81,8 @@ const Login = ({ updateAuth }) => { // Receive updateAuth function as a prop
         <button type="submit" className="btn-action">Login</button>
       </form>
     </div>
+    </section>
+ 
   );
 };
 
