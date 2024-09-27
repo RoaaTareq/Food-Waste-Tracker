@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 import Input from "../../../Components/Inputs/Input";  // Assuming this is the correct path
 import Button from "../../../Components/Buttons/Buttons";  // Assuming this is the correct path
 
@@ -7,6 +8,7 @@ function CreateAdmin() {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();  // Initialize navigate
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,6 +17,11 @@ function CreateAdmin() {
         console.log("Admin Phone:", phone);
         console.log("Admin Email:", email);
         console.log("Admin Password:", password);
+        
+        // Add your API call or backend logic here.
+        
+        // After form submission is successful, navigate to another page (e.g., admin list)
+        navigate("/admin-list");  // Replace "/admin-list" with the appropriate path
     };
 
     return (

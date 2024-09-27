@@ -39,7 +39,7 @@ const Login = ({ updateAuth }) => { // Receive updateAuth function as a prop
       } else if (user.role === 'hospital') {
         navigate('/hoispital');
       } else {
-        navigate('/employee');
+        navigate('/employee/employee');
       }
     } catch (err) {
       setError('Invalid email or password');

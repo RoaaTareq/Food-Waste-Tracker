@@ -41,15 +41,15 @@ function SidebarDashboard() {
           </Link>
           <span className="tooltip">Admin</span>
         </li> */}
-        {/* <li>
-          <Link to="category">
-            <i className="bx bx-user"></i>
-            <span className="links_name">Category</span>
-          </Link>
-          <span className="tooltip">Category</span>
-        </li> */}
         <li>
-          <Link to="employee">
+          <Link to="data">
+            <i className="bx bx-user"></i>
+            <span className="links_name">Data</span>
+          </Link>
+          <span className="tooltip">Data</span>
+        </li>
+        <li>
+          <Link to="member">
             <i className="bx bx-chat"></i>
             <span className="links_name">Employee</span>
           </Link>
