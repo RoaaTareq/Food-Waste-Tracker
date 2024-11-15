@@ -462,3 +462,8 @@ li{
     left: 0;
     right: 0;
 }
+.form-group{
+  background: white;
+    padding: 15px;
+    border-radius: 12px;
+}

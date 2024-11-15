@@ -1,9 +1,8 @@
-// Navbar.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './Navbar.css'; // Assuming you have styles for the navbar
+import { Navbar, Nav, NavDropdown, Button, Collapse, Container } from 'react-bootstrap'; // Import React Bootstrap components
 
-const Navbar = ({ logo, links, className = '' }) => {
+const CustomNavbar = ({ logo, links, className = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -11,48 +10,60 @@ const Navbar = ({ logo, links, className = '' }) => {
   };
 
   return (
-    <nav className={`navbar ${className}`}>
-      <div className="container">
-        <div className="navbar-logo">
-          <a href="/">
-            <img src={logo} alt="Logo" />
-          </a>
-        </div>
+    <Navbar expand="lg" className={`navbar ${className}`}>
+      <Container>
+        {/* Logo */}
+        <Navbar.Brand href="/">
+          <img src={logo} alt="Logo" className="navbar-logo" />
+        </Navbar.Brand>
 
-        <button className="navbar-toggle" onClick={toggleMobileMenu}>
-          {/* Burger icon */}
+        {/* Toggle Button for Mobile */}
+        <Button
+          className="navbar-toggle d-lg-none"
+          onClick={toggleMobileMenu}
+          aria-controls="navbar-nav"
+          aria-expanded={isMobileMenuOpen}
+        >
           <span className={`burger-icon ${isMobileMenuOpen ? 'open' : ''}`}>
             <span></span>
             <span></span>
             <span></span>
           </span>
-        </button>
+        </Button>
 
-        {/* Menu links */}
-        <ul className={`navbar-links ${isMobileMenuOpen ? 'active' : ''}`}>
-          {links.map((link, index) => (
-            <li key={index}>
-              <a href={link.href} target={link.newTab ? '_blank' : '_self'} rel="noopener noreferrer">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
+        {/* Navbar links and collapse for mobile */}
+        <Collapse in={isMobileMenuOpen}>
+          <Nav className="ml-auto" id="navbar-nav">
+            {links.map((link, index) => (
+              <Nav.Item key={index}>
+                {link.newTab ? (
+                  <Nav.Link href={link.href} target="_blank" rel="noopener noreferrer">
+                    {link.label}
+                  </Nav.Link>
+                ) : (
+                  <Nav.Link href={link.href} rel="noopener noreferrer">
+                    {link.label}
+                  </Nav.Link>
+                )}
+              </Nav.Item>
+            ))}
+          </Nav>
+        </Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-Navbar.propTypes = {
+CustomNavbar.propTypes = {
   logo: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({
-      href: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      newTab: PropTypes.bool,
+      href: PropTypes.string.isRequired, // URL of the link
+      label: PropTypes.string.isRequired, // Display text of the link
+      newTab: PropTypes.bool,            // Open link in a new tab
     })
   ).isRequired,
-  className: PropTypes.string,
+  className: PropTypes.string, // Optional class for custom styling
 };
 
-export default Navbar;
+export default CustomNavbar;

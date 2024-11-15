@@ -1,36 +1,34 @@
-// Card.js
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card as BootstrapCard, Button } from 'react-bootstrap'; // Import Bootstrap Card and Button
 
-const Card = ({ title, image, description, children, className = '', onButtonClick }) => {
+const CustomCard = ({ title, image, description, children, className = '', onButtonClick }) => {
   return (
-    <div className={`card  ratio-16x9 ${className}`}>
+    <BootstrapCard className={`custom-card ${className}`} style={{ width: '18rem' }}>
       {image && (
-        <div className="card-image">
-          <img src={image} alt={title} className='image-card' />
-        </div>
+        <BootstrapCard.Img variant="top" src={image} alt={title} className="image-card" />
       )}
-      <div className="card-content">
-        {title && <h3 className="card-title">{title}</h3>}
-        {description && <p className="card-description">{description}</p>}
+      <BootstrapCard.Body>
+        {title && <BootstrapCard.Title>{title}</BootstrapCard.Title>}
+        {description && <BootstrapCard.Text>{description}</BootstrapCard.Text>}
         {children}
-      </div>
-      {onButtonClick && (
-        <button className="card-button" onClick={onButtonClick}>
-          Learn More
-        </button>
-      )}
-    </div>
+        {onButtonClick && (
+          <Button variant="primary" onClick={onButtonClick}>
+            Learn More
+          </Button>
+        )}
+      </BootstrapCard.Body>
+    </BootstrapCard>
   );
 };
 
-Card.propTypes = {
-  title: PropTypes.string, // Card title
-  image: PropTypes.string, // Image source
+CustomCard.propTypes = {
+  title: PropTypes.string,      // Card title
+  image: PropTypes.string,      // Image source
   description: PropTypes.string, // Card description text
-  children: PropTypes.node, // Additional elements like buttons, etc.
-  className: PropTypes.string, // Optional custom class for styling
+  children: PropTypes.node,     // Additional elements like buttons, etc.
+  className: PropTypes.string,  // Optional custom class for styling
   onButtonClick: PropTypes.func, // Action when button is clicked
 };
 
-export default Card;
+export default CustomCard;
