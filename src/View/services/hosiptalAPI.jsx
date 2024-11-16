@@ -1,4 +1,4 @@
-const API_URL = '/api/hospitals'; // Your Laravel hospitals API URL
+const API_URL = 'http://127.0.0.1:8000/api/hospitals'; // Your Laravel hospitals API URL
 
 // Function to get the token from localStorage (or wherever you store it)
 const getAuthToken = () => {

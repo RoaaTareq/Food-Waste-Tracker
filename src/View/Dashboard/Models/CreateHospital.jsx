@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';  
 import * as Yup from 'yup';  
+import { createHospital } from '../../services/hosiptalAPI';  // Import the API function
 
+// Validation Schema using Yup
 const validationSchema = Yup.object({
     hospitalName: Yup.string().required('Hospital name is required'),
     hospitalAddress: Yup.string().required('Hospital address is required'),
@@ -25,58 +26,41 @@ function CreateHospital() {
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
 
+    // Handle form submission
     const handleSubmit = async (values) => {
-        setError('');
-        setSuccess('');
-        setLoading(true);
+        const {
+            hospitalName,
+            hospitalAddress,
+            hospitalPhone,
+            ownerName,
+            ownerEmail,
+            ownerPassword,
+        } = values;
 
-        // Get the token from localStorage
-        const token = localStorage.getItem('token');
+        const hospitalData = {
+            hospitalName,
+            hospitalAddress,
+            hospitalPhone,
+            ownerName,
+            ownerEmail,
+            ownerPassword
+        };
 
-        if (!token) {
-            setError("You are not authorized. Please login.");
-            setLoading(false);
-            return;
-        }
+        setLoading(true);  // Set loading state to true
+        setError('');  // Reset error message
+        setSuccess('');  // Reset success message
 
         try {
-            // Send a POST request to the backend API to register the hospital and owner
-            const response = await axios.post('http://127.0.0.1:8000/api/hospitals', {
-                hospital_name: values.hospitalName,
-                hospital_address: values.hospitalAddress,
-                hospital_phone: values.hospitalPhone,
-                owner_name: values.ownerName,
-                owner_email: values.ownerEmail,
-                owner_password: values.ownerPassword,
-                owner_password_confirmation: values.ownerPasswordConfirm,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                }
-            });
-
-            // If successful, display a success message
-            setSuccess('Hospital and owner registered successfully!');
-            console.log('Hospital registered:', response.data);
-
-            // Clear the input fields after submission
-            values.hospitalName = '';
-            values.hospitalAddress = '';
-            values.hospitalPhone = '';
-            values.ownerName = '';
-            values.ownerEmail = '';
-            values.ownerPassword = '';
-            values.ownerPasswordConfirm = '';
-
+            // Call the API to create the hospital
+            const response = await createHospital(hospitalData);
+            
+            // If the API call is successful, show success message
+            setSuccess('Hospital created successfully!');
         } catch (err) {
-            console.error('Error registering hospital:', err);
-            if (err.response && err.response.data) {
-                setError(err.response.data.message || 'An error occurred while registering the hospital.');
-            } else {
-                setError('An error occurred. Please try again.');
-            }
+            // If an error occurs, show error message
+            setError('Error creating hospital. Please try again.');
         } finally {
-            setLoading(false);
+            setLoading(false);  // Reset loading state
         }
     };
 
@@ -92,7 +76,7 @@ function CreateHospital() {
                 ownerPasswordConfirm: '',
             }}
             validationSchema={validationSchema}
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit}  // Pass handleSubmit to onSubmit
         >
             {({ isSubmitting }) => (
                 <FormikForm>
