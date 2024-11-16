@@ -4,23 +4,23 @@ import { Row, Col, Card,Container } from 'react-bootstrap';
 import Hospitals from '../../assets/Images/homeicon.svg';
 import Hotel from '../../assets/Images/hotelicon.svg';
 import Company from '../../assets/Images/componyicon.svg';
-import Food from '../../assets/Images/foodicon.svg';
-
+import { useTranslation } from 'react-i18next';
 
 
 const ServicesSection = () => {
+  const { i18n } = useTranslation(); 
   return (
     <section className={styles['about']}>
      <Container>
-        <h1 className="mt-4 mb-4 text-center">Our Services</h1>
+        <h1 className="mt-4 mb-4 text-center">{i18n.t('service')}</h1>
         <Row xs={1} md={2} lg={4} className="g-4">
           <Col>
             <Card className="custom-card">
               <Card.Img variant="top" src={Hospitals} />
               <Card.Body>
-                <Card.Title>Residential</Card.Title>
+                <Card.Title>{i18n.t('homeone')}</Card.Title>
                 <Card.Text>
-                  Weekly pickup service for your home or apartment
+                {i18n.t('hometext')}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -29,9 +29,9 @@ const ServicesSection = () => {
             <Card className="custom-card">
               <Card.Img variant="top" src={Hotel} />
               <Card.Body>
-                <Card.Title>Hotels</Card.Title>
+                <Card.Title>{i18n.t('hotel')}</Card.Title>
                 <Card.Text>
-                  Customized pickup service for your business
+                {i18n.t('hoteltext')}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -40,15 +40,15 @@ const ServicesSection = () => {
             <Card className="custom-card">
               <Card.Img variant="top" src={Company} />
               <Card.Body>
-                <Card.Title>Commercial</Card.Title>
+                <Card.Title>  {i18n.t('comm')}</Card.Title>
                 <Card.Text>
-                  Customized pickup service for your business
+                {i18n.t('hoteltext')}
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card className="custom-card">
+            {/* <Card className="custom-card">
               <Card.Img variant="top" src={Food} />
               <Card.Body>
                 <Card.Title>Uncover inefficiencies</Card.Title>
@@ -56,7 +56,7 @@ const ServicesSection = () => {
                   Optimize inventory and purchasing
                 </Card.Text>
               </Card.Body>
-            </Card>
+            </Card> */}
           </Col>
         </Row>
       </Container>

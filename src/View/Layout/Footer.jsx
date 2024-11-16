@@ -1,15 +1,16 @@
 
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 
 const Footer = () => {
-  
+  const { i18n } = useTranslation(); 
 
   return ( 
     <footer className='footer'>
         
-            <p>copyright © 2024 Your Company. All rights reserved</p>
+            <p>{i18n.t('copy')}</p>
        
   
      
