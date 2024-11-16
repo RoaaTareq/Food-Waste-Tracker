@@ -27,7 +27,10 @@ i18n
           uncover:"Uncover inefficiencies",
           uncoverone:"Optimize inventory and purchasing",
           main:"Tracking Food Waste System",
-          text:" Empowering organizations to contribute to building a sustainable food system for everyone."
+          text:" Empowering organizations to contribute to building a sustainable food system for everyone.",
+          join:"Join Us",
+          join_text:" We're on a mission to end food waste, and we need your help to do it. Whether you're a hospital or restaurant looking to reduce your food waste or a passionate individual looking to make a difference, we'd love to hear from you. Get in touch with us today to learn more about our system and how we can help you track, reduce, and report your food waste.",
+          touch:"Get in touch"
 
         },
       },
@@ -47,7 +50,10 @@ i18n
           uncover:"كشف عدم الكفاءة",
           uncoverone:"تحسين المخزون والشراء",
           main:"نظام تتبع هدر الغذاء",
-          text:"تمكين المنظمات من المساهمة في بناء نظام غذائي مستدام للجميع."
+          text:"تمكين المنظمات من المساهمة في بناء نظام غذائي مستدام للجميع.",
+          join:"انضم لنا",
+          join_text:"نحن في مهمة لإنهاء هدر الطعام، ونحتاج إلى مساعدتكم للقيام بذلك. سواء كنت مستشفى أو مطعمًا يتطلع إلى تقليل هدر الطعام أو فردًا متحمسًا يتطلع إلى إحداث فرق، يسعدنا أن نسمع منك. تواصل معنا اليوم لمعرفة المزيد عن نظامنا وكيف يمكننا مساعدتك في تتبع هدر الطعام وتقليله والإبلاغ عنه.",
+          touch:"تواصل معنا"
         },
       },
     },
