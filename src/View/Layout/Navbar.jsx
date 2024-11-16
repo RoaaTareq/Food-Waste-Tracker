@@ -1,7 +1,5 @@
-
-
 import React from 'react';
-import Nav from '../../Components/Layout/Navbar'
+import CustomNavbar from '../../Components/Layout/Navbar';  
 
 const Navbar = () => {
   const links = [
@@ -11,8 +9,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <Nav  links={links} className="custom-navbar" />
-      {/* Other components */}
+      <CustomNavbar links={links} className="custom-navbar" />
     </div>
   );
 };

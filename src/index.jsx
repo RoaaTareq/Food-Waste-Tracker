@@ -5,30 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { initReactI18next } from 'react-i18next';
-import i18n from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: {
-        translation: require('./locales/en/translation.json')
-      },
-      ar: {
-        translation: require('./locales/ar/translation.json')
-      }
-    },
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false
-    },
-    detection: {
-      order: ['querystring'],
-      lookupQuerystring: 'lang'
-    }
-  });
+
+import './i18n'; // Import the i18n configuration
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

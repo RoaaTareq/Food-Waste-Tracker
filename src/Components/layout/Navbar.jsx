@@ -13,11 +13,11 @@ const CustomNavbar = ({ logo, links, className = '' }) => {
     <Navbar expand="lg" className={`navbar ${className}`}>
       <Container>
         {/* Logo */}
-        <Navbar.Brand href="/">
+        {/* <Navbar.Brand href="/">
           <img src={logo} alt="Logo" className="navbar-logo" />
-        </Navbar.Brand>
+        </Navbar.Brand> */}
 
-        {/* Toggle Button for Mobile */}
+        
         <Button
           className="navbar-toggle d-lg-none"
           onClick={toggleMobileMenu}

@@ -1,6 +1,6 @@
 import styles from './CSS/Home.module.css';
 import React from 'react';
-import { Row, Col, Card } from 'react-bootstrap'; 
+import { Row, Col, Card,Container } from 'react-bootstrap'; 
 import Hospitals from '../../assets/Images/homeicon.svg';
 import Hotel from '../../assets/Images/hotelicon.svg';
 import Company from '../../assets/Images/componyicon.svg';
@@ -11,7 +11,7 @@ import Food from '../../assets/Images/foodicon.svg';
 const ServicesSection = () => {
   return (
     <section className={styles['about']}>
-      <div className="container">
+     <Container>
         <h1 className="mt-4 mb-4 text-center">Our Services</h1>
         <Row xs={1} md={2} lg={4} className="g-4">
           <Col>
@@ -59,7 +59,7 @@ const ServicesSection = () => {
             </Card>
           </Col>
         </Row>
-      </div>
+      </Container>
     </section>
   );
 };
