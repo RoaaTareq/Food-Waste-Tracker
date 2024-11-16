@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Input from "../../../Components/Inputs/Input";  // Assuming this is the correct path
-import Button from "../../../Components/Buttons/Buttons";  // Assuming this is the correct path
+import { Form, Button, Alert } from "react-bootstrap"; // Import necessary components from React Bootstrap
 
 function EditCategory({ rowData, onUpdate }) {
     const [name, setName] = useState('');
@@ -26,26 +25,37 @@ function EditCategory({ rowData, onUpdate }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="edit-form" >
+        <Form onSubmit={handleSubmit}>
             <h6>Edit Category</h6>
-            <div className="form-group">
-                <Input
+            
+            {/* Category Name */}
+            <Form.Group controlId="categoryName" className="mb-3">
+                <Form.Label>Category Name</Form.Label>
+                <Form.Control
                     type="text"
-                    id="categoryName"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="form-control"
                     placeholder="Enter category name"
                     required
                 />
-            </div>
+            </Form.Group>
 
-           
+            {/* Category Email (Optional) */}
+            <Form.Group controlId="categoryEmail" className="mb-3">
+                <Form.Label>Category Email</Form.Label>
+                <Form.Control
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter category email (optional)"
+                />
+            </Form.Group>
 
-            <Button type="submit" className="btn-add">
+            {/* Submit Button */}
+            <Button type="submit" variant="primary" className="mt-3">
                 Submit
             </Button>
-        </form>
+        </Form>
     );
 }
 

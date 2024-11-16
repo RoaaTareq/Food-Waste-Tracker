@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Input from "../../../Components/Inputs/Input";  // Assuming this is the correct path
-import Button from "../../../Components/Buttons/Buttons";  // Assuming this is the correct path
+import { Form, Button, Alert } from "react-bootstrap";  // Import React Bootstrap components
 
-function CreateCategory({ onSuccess }) {  // Receive the onSuccess callback as a prop
+function CreateCategory({ onSuccess }) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [error, setError] = useState('');
@@ -53,31 +52,42 @@ function CreateCategory({ onSuccess }) {  // Receive the onSuccess callback as a
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <h6>Create Category</h6>
             
             {/* Display success or error message */}
-            {success && <div className="alert alert-success">{success}</div>}
-            {error && <div className="alert alert-danger">{error}</div>}
+            {success && <Alert variant="success">{success}</Alert>}
+            {error && <Alert variant="danger">{error}</Alert>}
             
-            <div className="form-group">
-                <Input
+            {/* Category Name */}
+            <Form.Group controlId="categoryName" className="mb-3">
+                <Form.Label>Category Name</Form.Label>
+                <Form.Control
                     type="text"
-                    id="categoryName"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="form-control"
                     placeholder="Enter category name"
                     required
                 />
-            </div>
+            </Form.Group>
 
-          
+            {/* Category Description */}
+            <Form.Group controlId="categoryDescription" className="mb-3">
+                <Form.Label>Category Description</Form.Label>
+                <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Enter category description"
+                />
+            </Form.Group>
 
-            <Button type="submit" className="btn-add">
+            {/* Submit Button */}
+            <Button type="submit" className="btn-add" variant="primary">
                 Submit
             </Button>
-        </form>
+        </Form>
     );
 }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Input from "../../../Components/Inputs/Input";  // Assuming this is the correct path
-import Button from "../../../Components/Buttons/Buttons";  // Assuming this is the correct path
+import { Form, Button, Alert } from "react-bootstrap"; // Import necessary components from React Bootstrap
 
 function EditAdmin({ rowData, onUpdate }) {
     const [name, setName] = useState('');
@@ -31,65 +30,61 @@ function EditAdmin({ rowData, onUpdate }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="form-admin">
+        <Form onSubmit={handleSubmit}>
             <h6>Edit Admin</h6>
 
             {/* Admin Name */}
-            <div className="form-group">
-                <Input
+            <Form.Group controlId="adminName" className="mb-3">
+                <Form.Label>Admin Name</Form.Label>
+                <Form.Control
                     type="text"
-                    id="adminName"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="form-control"
                     placeholder="Enter admin name"
                     required
                 />
-            </div>
+            </Form.Group>
 
             {/* Admin Phone */}
-            <div className="form-group mt-3">
-                <Input
+            <Form.Group controlId="adminPhone" className="mb-3">
+                <Form.Label>Admin Phone</Form.Label>
+                <Form.Control
                     type="tel"
-                    id="adminPhone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="form-control"
                     placeholder="Enter admin phone"
                     required
                 />
-            </div>
+            </Form.Group>
 
             {/* Admin Email */}
-            <div className="form-group mt-3">
-                <Input
+            <Form.Group controlId="adminEmail" className="mb-3">
+                <Form.Label>Admin Email</Form.Label>
+                <Form.Control
                     type="email"
-                    id="adminEmail"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="form-control"
                     placeholder="Enter admin email"
                     required
                 />
-            </div>
+            </Form.Group>
 
             {/* Admin Password */}
-            <div className="form-group mt-3">
-                <Input
+            <Form.Group controlId="adminPassword" className="mb-3">
+                <Form.Label>Admin Password</Form.Label>
+                <Form.Control
                     type="password"
-                    id="adminPassword"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="form-control"
                     placeholder="Enter admin password"
                 />
-            </div>
+            </Form.Group>
 
             {/* Submit Button */}
-            <Button type="submit" className="btn-add mt-3">
+            <Button type="submit" variant="primary" className="mt-3">
                 Submit
             </Button>
-        </form>
+        </Form>
     );
 }
 

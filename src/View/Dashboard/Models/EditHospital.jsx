@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Input from "../../../Components/Inputs/Input";  // Assuming this is the correct path
-import Button from "../../../Components/Buttons/Buttons";  // Assuming this is the correct path
+import { Form, Button, Alert } from "react-bootstrap"; // Import necessary components from React Bootstrap
 
 function EditHospital({ rowData, onUpdate }) {
     const [name, setName] = useState('');
@@ -29,53 +28,50 @@ function EditHospital({ rowData, onUpdate }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="edit-form">
+        <Form onSubmit={handleSubmit}>
             <h6>Edit Hospital</h6>
-            
+
             {/* Hospital Name */}
-            <div className="form-group">
-                <Input
+            <Form.Group controlId="hospitalName" className="mb-3">
+                <Form.Label>Hospital Name</Form.Label>
+                <Form.Control
                     type="text"
-                    id="hospitalName"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="form-control"
                     placeholder="Enter hospital name"
                     required
                 />
-            </div>
+            </Form.Group>
 
             {/* Hospital Address */}
-            <div className="form-group mt-3">
-                <Input
+            <Form.Group controlId="hospitalAddress" className="mb-3">
+                <Form.Label>Hospital Address</Form.Label>
+                <Form.Control
                     type="text"
-                    id="hospitalAddress"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    className="form-control"
                     placeholder="Enter hospital address"
                     required
                 />
-            </div>
+            </Form.Group>
 
             {/* Hospital Phone */}
-            <div className="form-group mt-3">
-                <Input
+            <Form.Group controlId="hospitalPhone" className="mb-3">
+                <Form.Label>Hospital Phone</Form.Label>
+                <Form.Control
                     type="tel"
-                    id="hospitalPhone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="form-control"
                     placeholder="Enter hospital phone"
                     required
                 />
-            </div>
+            </Form.Group>
 
             {/* Submit Button */}
-            <Button type="submit" className="btn-add mt-3">
+            <Button type="submit" variant="primary" className="mt-3">
                 Submit
             </Button>
-        </form>
+        </Form>
     );
 }
 
