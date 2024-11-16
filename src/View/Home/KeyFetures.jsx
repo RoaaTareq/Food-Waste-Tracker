@@ -1,52 +1,47 @@
-import React from 'react'
-import styles from './CSS/Home.module.css'
-import Card from '../../Components/Card/Card'
-import Cost from '../../assets/Images/Cost.png'
-import Monitoring from '../../assets/Images/analysis.png'
-import RealTime from '../../assets/Images/delivery-box.png'
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';  // Importing React Bootstrap grid components
+import styles from './CSS/Home.module.css';  // Your custom CSS
+import Card from '../../Components/Card/Card';  // Assuming you have a custom Card component
 
-function Home (){
-    return(
+function KeyFeatures() {
+  return (
     <section className={styles['Features']}>
-    <div className="container">
-        <h3 className='mt-4'>What you get with Waste Track ?</h3>
-       
-    <div className="d-flex m-auto">
-        <div >
-        <Card
-        title="Real-time insights"
-       description="Track food waste as it happens"
-        className="custom-card "
-      />
-        </div>
-        <div >
-        <Card
-        title="Data-driven recommendations"
-       
-    description="AI-powered insights that help you reduce waste"
-        className="custom-card "
-      />
-        </div>
-        <div >
-        <Card
-        title="Reduce food waste"
-         description="Save up to 6% on food costs"
-    
-        className="custom-card"
-      />
-        </div>
-        <div >
-        <Card
-        title="Uncover inefficiencies"
-        description="Optimize inventory and purchasing"
-    
-        className="custom-card"
-      />
-        </div>
-    </div>
-    </div>
-</section>
-    )
+      <Container>
+        <h3 className="mt-4 text-center">What you get with Waste Track?</h3>
+
+        <Row className="g-4 mt-4">
+          <Col xs={12} md={6} lg={3}>
+            <Card
+              title="Real-time insights"
+              description="Track food waste as it happens"
+              className="custom-card"
+            />
+          </Col>
+          <Col xs={12} md={6} lg={3}>
+            <Card
+              title="Data-driven recommendations"
+              description="AI-powered insights that help you reduce waste"
+              className="custom-card"
+            />
+          </Col>
+          <Col xs={12} md={6} lg={3}>
+            <Card
+              title="Reduce food waste"
+              description="Save up to 6% on food costs"
+              className="custom-card"
+            />
+          </Col>
+          <Col xs={12} md={6} lg={3}>
+            <Card
+              title="Uncover inefficiencies"
+              description="Optimize inventory and purchasing"
+              className="custom-card"
+            />
+          </Col>
+        </Row>
+      </Container>
+    </section>
+  );
 }
 
-export default Home
+export default KeyFeatures;
