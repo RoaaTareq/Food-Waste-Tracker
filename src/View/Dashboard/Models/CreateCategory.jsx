@@ -4,7 +4,6 @@ import { Form, Button } from "react-bootstrap";
 import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';  
 import * as Yup from 'yup';  
 
-// Validation Schema using Yup
 const validationSchema = Yup.object({
     name: Yup.string().required('Category name is required'),
     description: Yup.string().optional()
