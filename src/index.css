@@ -7,7 +7,21 @@ body {
   font-family: 'Nunito Sans', sans-serif !important;  
   background-color: rgb(8, 16, 40) !important;  
 }
-
+.text-center{
+  text-align: center !important;
+}
+.card-title{
+  text-align: center !important;
+}
+.card-text{
+  text-align: center !important;
+}
+.custom-card{
+  display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+}
 .login-page{
   display: flex;
   flex-direction: row;

@@ -40,10 +40,23 @@
    .Main-text{
     width: 12rem;
    }
+   .Features{
+    padding: 30px;
+    background-color: #F5F5F5;
+}
+.about{
+    padding: 30px;
+}
   }
   
   /* Small devices (landscape phones, 576px and up) */
   @media (min-width: 576px) and (max-width: 767.98px) {
-   
+    .Features{
+        padding: 30px;
+        background-color: #F5F5F5;
+    }
+    .about{
+        padding: 30px;
+    }
   }
   

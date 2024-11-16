@@ -17,28 +17,28 @@ function KeyFeatures() {
           <Col xs={12} md={6} lg={3}>
             <Card
               title={i18n.t('real')}
-              description={i18n.t('track')}
+            
               className="custom-card"
             />
           </Col>
           <Col xs={12} md={6} lg={3}>
             <Card
               title={i18n.t('reco')}
-              description={i18n.t('recoone')}
+            
               className="custom-card"
             />
           </Col>
           <Col xs={12} md={6} lg={3}>
             <Card
               title={i18n.t('reduce')}
-              description={i18n.t('reduceone')}
+             
               className="custom-card"
             />
           </Col>
           <Col xs={12} md={6} lg={3}>
             <Card
               title={i18n.t('uncover')}
-              description={i18n.t('uncoverone')}
+              
               className="custom-card"
             />
           </Col>
