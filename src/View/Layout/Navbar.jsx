@@ -1,15 +1,25 @@
-// src/components/Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';  // Optional: Use React Router for navigation
+import { Link, useLocation, useNavigate } from 'react-router-dom';  // Use useNavigate instead of useHistory
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';  // Import i18next hooks for language change
 
 const NavigationBar = () => {
   const { i18n } = useTranslation();  // Destructure i18n to access changeLanguage function
+  const location = useLocation();  // Access the current location object to check the URL query params
+  const navigate = useNavigate();  // useNavigate hook for programmatic navigation
 
   const handleLanguageChange = (lang) => {
-    i18n.changeLanguage(lang);  // Change language to the selected language
+    i18n.changeLanguage(lang);  // Change language
+    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    
+    // Store language in localStorage
+    localStorage.setItem('lang', lang);
+    
+    // Update the URL with the new query parameter
+    const currentPath = window.location.pathname;
+    navigate(`${currentPath}?lang=${lang}`);
   };
+  
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -19,14 +29,9 @@ const NavigationBar = () => {
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">{i18n.t('home')}</Nav.Link>
-           
-            {/* <NavDropdown title={i18n.t('more')} id="navbar-dropdown">
-              <NavDropdown.Item as={Link} to="/contact">{i18n.t('contact')}</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/help">{i18n.t('help')}</NavDropdown.Item>
-            </NavDropdown> */}
           </Nav>
           
-          {/* Language Switcher (Dropdown or Button) */}
+          {/* Language Switcher (Buttons) */}
           <Button variant="outline-light" onClick={() => handleLanguageChange('en')}>EN</Button>
           <Button variant="outline-light" onClick={() => handleLanguageChange('ar')} className="ms-2">AR</Button>
         </Navbar.Collapse>
