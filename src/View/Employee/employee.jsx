@@ -10,7 +10,7 @@ function EmployeeDashboard() {
       <SidebarDashboard />
       <section className="home-section">
         <div className="container">
-          {/* Routes for dashboard pages inside the home layout */}
+         
           <Routes>
             <Route path="employee" element={<Employee />} />
             <Route path="data" element={<Data />} />

@@ -1,17 +1,16 @@
-const API_URL = '/api/categories'; // Your Laravel API URL
+const API_URL = '/api/categories'; 
 
-// Function to get the token from localStorage (or wherever you store it)
 const getAuthToken = () => {
-    return localStorage.getItem('auth_token'); // Assuming the token is stored in localStorage
+    return localStorage.getItem('auth_token'); 
 };
 
-// Generic fetch function to make API requests
+
 const fetchApi = async (url, options = {}) => {
     const token = getAuthToken();
     
     const headers = {
         'Content-Type': 'application/json',
-        ...(token && { 'Authorization': `Bearer ${token}` }), // Attach token if available
+        ...(token && { 'Authorization': `Bearer ${token}` }), 
     };
 
     const response = await fetch(url, {
