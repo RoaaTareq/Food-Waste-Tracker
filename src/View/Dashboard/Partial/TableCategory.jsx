@@ -1,104 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import axios
 import Table from '../../../Components/Table/Table';
-import EditCategory from '../Models/EditCategory'; // Import the EditCategory form
-import HeaderCategory from './HeaderCategory'; // Import the updated HeaderCategory component
+import EditCategory from '../Models/EditCategory'; 
+import HeaderCategory from './HeaderCategory'; 
+import { deleteCategory, getCategories, getCategoryById } from '../../services/categoryAPI';
 
 const TableData = () => {
-  const [data, setData] = useState([]);
-  const [isEditing, setIsEditing] = useState(false); // To toggle between Table and Form
-  const [selectedRow, setSelectedRow] = useState(null); // To store the row being edited
-  const [error, setError] = useState(''); // To handle errors
+  const [categories, setCategories] = useState([]); // Store categories data
+  const [isEditing, setIsEditing] = useState(false); // Toggle edit mode
+  const [selectedRow, setSelectedRow] = useState(null); // Store selected category for editing
+  const [error, setError] = useState(null); // Declare error state
 
-  // Define columns for the table
+  // Define the columns for the table
   const columns = [
-    { label: 'Category Name', key: 'name' },
-    
+    { header: 'Category Name', accessor: 'name' },
+    { header: 'Descrption', accessor: 'Descrption' },
+    {
+        header: 'Actions',
+        accessor: 'actions',
+        Cell: ({ row }) => (
+            <>
+                <button onClick={() => handleEdit(row.original.id)}>Edit</button>
+                <button onClick={() => handleDeleteCategory(row.original.id)}>Delete</button>
+            </>
+        ),
+    },
   ];
 
-  // Function to fetch categories from the API
+  // Function to fetch categories
   const fetchCategories = async () => {
-    const token = localStorage.getItem('token'); // Retrieve token from localStorage
-
-    if (!token) {
-      setError('You are not authorized. Please login.');
-      return;
-    }
-
     try {
-      const response = await axios.get('http://localhost:8000/api/categories', {
-        headers: {
-          Authorization: `Bearer ${token}` // Pass token in the Authorization header
-        }
-      });
-
-      setData(response.data); // Update state with the fetched categories
-      setError(''); // Clear any previous errors
+        const data = await getCategories(); // Fetch categories
+        setCategories(data); // Set categories state
+        setError(null); // Clear any previous error
     } catch (err) {
-      console.error('Error fetching categories:', err);
-      setError('Failed to fetch categories. Please try again.');
+        console.error('Error fetching categories:', err);
+        setError('Failed to fetch categories. Please try again.'); // Set error state
     }
   };
 
-  // Fetch categories on component mount
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    fetchCategories(); // Call fetchCategories when the component mounts
+  }, []); 
 
-  // Handle edit button click and pass the id of the selected row
-  const handleEdit = (row) => {
-    setSelectedRow(row); // Store the selected row's data (including id)
-    setIsEditing(true);  // Toggle to the EditCategory form
-  };
-
-  // Handle delete button
-  const handleDelete = async (row) => {
-    const token = localStorage.getItem('token'); // Retrieve token from localStorage
-
-    if (!token) {
-      setError('You are not authorized. Please login.');
-      return;
-    }
-
+  // Handle editing a category: Set selectedRow and enable editing
+  const handleEdit = async (id) => {
     try {
-      // Send DELETE request to API
-      await axios.delete(`http://localhost:8000/api/categories/${row.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}` // Pass token in the Authorization header
-        }
-      });
-
-      // Remove the deleted item from the state
-      setData(data.filter(item => item.id !== row.id));
-    } catch (err) {
-      console.error('Error deleting category:', err);
-      setError('Failed to delete the category. Please try again.');
+      const category = await getCategoryById(id); // Fetch category by ID
+      setSelectedRow(category); // Set the selected row data
+      setIsEditing(true); // Enable edit mode
+    } catch (error) {
+      console.error('Error fetching category for editing:', error);
+      setError('Failed to fetch category for editing.');
     }
   };
 
-  // Handle update after editing a category
+  // Handle deleting a category
+  const handleDeleteCategory = async (id) => {
+    try {
+        await deleteCategory(id); // Delete category by ID
+        setCategories(categories.filter((category) => category.id !== id)); // Remove from the list
+    } catch (error) {
+        console.error('Error deleting category:', error);
+        setError('Failed to delete category.');
+    }
+  };
+
+  // Handle updating a category: Update categories state and exit edit mode
   const handleUpdate = (updatedRow) => {
-    setData(data.map(item => (item.id === updatedRow.id ? updatedRow : item)));
-    setIsEditing(false); // Hide the form after update
+    setCategories(categories.map(item => (item.id === updatedRow.id ? updatedRow : item))); // Update category data in state
+    setIsEditing(false); // Exit edit mode
+    setSelectedRow(null); // Clear selected row
   };
 
   return (
     <div>
-      <HeaderCategory refreshTable={fetchCategories} /> {/* Pass refreshTable function */}
+      <HeaderCategory refreshTable={fetchCategories} /> {/* Header with refresh function */}
 
+      {/* Display error message if there's an error */}
       {error && <div className="alert alert-danger">{error}</div>}
 
       {!isEditing ? (
         <Table
-          columns={columns}  
-          data={data}
-          onEdit={handleEdit}
-          onDelete={handleDelete}  // Pass the handleDelete function to the Table component
+          columns={columns} // Pass columns to Table component
+          data={categories} // Pass categories as data to Table
+          onEdit={handleEdit} // Edit action will call handleEdit with category ID
+          onDelete={handleDeleteCategory} // Delete action will call handleDeleteCategory with category ID
         />
       ) : (
         <EditCategory
-          rowData={selectedRow} // Pass the selected row's data to the EditCategory form
-          onUpdate={handleUpdate} // Pass the handleUpdate function to update data
+          rowData={selectedRow} // Pass the selected category's data to the EditCategory component
+          onUpdate={handleUpdate} // Callback to update the category after edit
         />
       )}
     </div>

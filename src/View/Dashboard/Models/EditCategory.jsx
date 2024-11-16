@@ -1,39 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";  
 import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';  
 import * as Yup from 'yup';  
+import { updateCategory } from '../../services/categoryAPI'; 
 
 // Validation Schema using Yup
 const validationSchema = Yup.object({
     name: Yup.string().required('Category name is required'),
-    email: Yup.string().email('Invalid email address').optional()  
+    email: Yup.string().email('Invalid email address').optional(),
 });
 
 function EditCategory({ rowData, onUpdate }) {
-    // Prefill form values if rowData is available
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    
     useEffect(() => {
-        if (rowData) {
-            // You can use useEffect to populate form values if rowData exists
-        }
+        // Reset messages when rowData changes
+        setErrorMessage('');
+        setSuccessMessage('');
     }, [rowData]);
 
     const handleSubmit = async (values, { setSubmitting }) => {
-        // Prepare updated row data
-        const updatedRow = {
-            id: rowData.id,  // Include the id in the updated row data
-            ...values,       // Spread the values from Formik
-        };
+        const { name, email } = values;
+
+        setErrorMessage('');  // Reset error message
+        setSuccessMessage('');  // Reset success message
 
         try {
-            // Here you can call the onUpdate function passed from the parent
-            onUpdate(updatedRow);
+            // Call the API to update the category
+            const updatedCategory = await updateCategory(rowData.id, { name, email });
 
-            // You can add a success message or redirect here if needed
+            // On success, show a success message and trigger onUpdate callback
+            setSuccessMessage('Category updated successfully!');
+            onUpdate(updatedCategory);  // You can use this callback to refresh the list or close the modal
         } catch (error) {
             console.error('Error updating category:', error);
-            // Handle any errors here (optional)
+            setErrorMessage('Failed to update category. Please try again.');
         } finally {
-            setSubmitting(false);  // Stop the submission state
+            setSubmitting(false);  // Stop the submitting state
         }
     };
 
@@ -49,6 +53,10 @@ function EditCategory({ rowData, onUpdate }) {
             {({ isSubmitting }) => (
                 <FormikForm className="form-category">
                     <h6>Edit Category</h6>
+
+                    {/* Success and Error Messages */}
+                    {successMessage && <Alert variant="success">{successMessage}</Alert>}
+                    {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
 
                     {/* Category Name */}
                     <Form.Group controlId="name" className="mb-3">
