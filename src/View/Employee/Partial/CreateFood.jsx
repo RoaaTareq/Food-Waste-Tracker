@@ -1,62 +1,43 @@
 import React, { useState } from "react";
-import Table from './Table';
+import { Formik, Field, Form as FormikForm, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import Table from './Table';  // Assuming you have a Table component
+
+// Validation schema using Yup
+const validationSchema = Yup.object({
+  category: Yup.string().required("Category is required"),
+  item: Yup.string().required("Item is required"),
+  quantity: Yup.number().required("Quantity is required").positive("Quantity must be positive"),
+  reason: Yup.string().required("Reason is required"),
+  time: Yup.string().required("Time is required"),
+  meal: Yup.string().required("Meal is required"),
+  note: Yup.string().optional(),
+});
 
 function FoodWaste() {
-  const [formData, setFormData] = useState({
-    category: "",
-    item: "",
-    quantity: "",
-    reason: "",
-    time: "",
-    meal: "",
-    note: "",
-  });
-
   const [foodWasteData, setFoodWasteData] = useState([]);
   const [isEditing, setIsEditing] = useState(null); // Track editing row
   const [formVisible, setFormVisible] = useState(false); // Track form visibility
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Add new entry or update existing entry
+  const handleSubmit = (values, { setSubmitting }) => {
     if (isEditing === null) {
-      setFoodWasteData([...foodWasteData, formData]);
+      setFoodWasteData([...foodWasteData, values]); // Add new entry
     } else {
       // Update existing entry
       const updatedData = foodWasteData.map((item, index) =>
-        index === isEditing ? formData : item
+        index === isEditing ? values : item
       );
       setFoodWasteData(updatedData);
-      setIsEditing(null);
+      setIsEditing(null); // Reset editing
     }
 
-    // Reset form and close it
-    setFormData({
-      category: "",
-      item: "",
-      quantity: "",
-      reason: "",
-      time: "",
-      meal: "",
-      note: "",
-    });
-
-    // Close form after submission
-    setFormVisible(false);
+    setSubmitting(false); // Stop form submission
+    setFormVisible(false); // Close form after submission
   };
 
   // Handle edit action
   const handleEdit = (index) => {
     const selectedData = foodWasteData[index];
-    setFormData(selectedData);
     setIsEditing(index); // Set the index being edited
     setFormVisible(true); // Open the form for editing
   };
@@ -80,102 +61,105 @@ function FoodWaste() {
       </div>
 
       {formVisible && (
-        <form onSubmit={handleSubmit} className="form-group">
-          <h6>Food Waste Form</h6>
+        <Formik
+          initialValues={{
+            category: "",
+            item: "",
+            quantity: "",
+            reason: "",
+            time: "",
+            meal: "",
+            note: "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <FormikForm className="form-group">
+              <h6>Food Waste Form</h6>
 
-          <div>
-            <label>Category</label>
-            <input
-              type="text"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              placeholder="Enter food category"
-              className="form-control mt-3"
-              required
-            />
-          </div>
+              <div>
+                <label>Category</label>
+                <Field
+                  type="text"
+                  name="category"
+                  className="form-control mt-3"
+                  placeholder="Enter food category"
+                />
+                <ErrorMessage name="category" component="div" className="text-danger" />
+              </div>
 
-          <div>
-            <label>Item</label>
-            <input
-              type="text"
-              name="item"
-              value={formData.item}
-              onChange={handleChange}
-              placeholder="Enter food item"
-              className="form-control mt-3"
-              required
-            />
-          </div>
+              <div>
+                <label>Item</label>
+                <Field
+                  type="text"
+                  name="item"
+                  className="form-control mt-3"
+                  placeholder="Enter food item"
+                />
+                <ErrorMessage name="item" component="div" className="text-danger" />
+              </div>
 
-          <div className="form-group">
-            <label>Quantity</label>
-            <input
-              type="number"
-              name="quantity"
-              value={formData.quantity}
-              onChange={handleChange}
-              placeholder="Enter quantity"
-              className="form-control mt-3"
-              required
-            />
-          </div>
+              <div>
+                <label>Quantity</label>
+                <Field
+                  type="number"
+                  name="quantity"
+                  className="form-control mt-3"
+                  placeholder="Enter quantity"
+                />
+                <ErrorMessage name="quantity" component="div" className="text-danger" />
+              </div>
 
-          <div className="form-group">
-            <label>Reason</label>
-            <input
-              type="text"
-              name="reason"
-              value={formData.reason}
-              onChange={handleChange}
-              placeholder="Enter reason"
-              className="form-control mt-3"
-              required
-            />
-          </div>
+              <div>
+                <label>Reason</label>
+                <Field
+                  type="text"
+                  name="reason"
+                  className="form-control mt-3"
+                  placeholder="Enter reason"
+                />
+                <ErrorMessage name="reason" component="div" className="text-danger" />
+              </div>
 
-          <div>
-            <label>Time</label>
-            <input
-              type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              className="form-control mt-3"
-              required
-            />
-          </div>
+              <div>
+                <label>Time</label>
+                <Field
+                  type="time"
+                  name="time"
+                  className="form-control mt-3"
+                />
+                <ErrorMessage name="time" component="div" className="text-danger" />
+              </div>
 
-          <div>
-            <label>Meal</label>
-            <input
-              type="text"
-              name="meal"
-              value={formData.meal}
-              onChange={handleChange}
-              placeholder="Enter meal"
-              className="form-control mt-3"
-              required
-            />
-          </div>
+              <div>
+                <label>Meal</label>
+                <Field
+                  type="text"
+                  name="meal"
+                  className="form-control mt-3"
+                  placeholder="Enter meal"
+                />
+                <ErrorMessage name="meal" component="div" className="text-danger" />
+              </div>
 
-          <div>
-            <label>Note</label>
-            <input
-              type="text"
-              name="note"
-              value={formData.note}
-              onChange={handleChange}
-              placeholder="Enter note"
-              className="form-control mt-3"
-            />
-          </div>
+              <div>
+                <label>Note</label>
+                <Field
+                  type="text"
+                  name="note"
+                  className="form-control mt-3"
+                  placeholder="Enter note"
+                />
+                <ErrorMessage name="note" component="div" className="text-danger" />
+              </div>
 
-          <button type="submit" className="btn-add">
-            {isEditing !== null ? "Update Waste" : "Add Waste food"}
-          </button>
-        </form>
+              <button type="submit" className="btn-add" disabled={isSubmitting}>
+                {isEditing !== null ? "Update Waste" : "Add Waste Food"}
+              </button>
+            </FormikForm>
+          )}
+        </Formik>
       )}
 
       <Table
