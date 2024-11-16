@@ -1,90 +1,117 @@
-import React, { useState, useEffect } from "react";
-import { Form, Button, Alert } from "react-bootstrap"; // Import necessary components from React Bootstrap
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";  // Navigate after successful submission
+import { Form, Button, Alert } from "react-bootstrap";
+import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';  // Import Formik components
+import * as Yup from 'yup';  // Import Yup for validation
+
+// Validation Schema using Yup
+const validationSchema = Yup.object({
+    name: Yup.string().required('Admin name is required'),
+    phone: Yup.string()
+        .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
+        .required('Phone number is required'),
+    email: Yup.string().email('Invalid email address').required('Admin email is required'),
+    password: Yup.string()
+        .min(6, 'Password must be at least 6 characters')
+        .optional()  // Password is optional, since it's not pre-filled
+});
 
 function EditAdmin({ rowData, onUpdate }) {
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState(''); // Password might not be pre-filled
+    const navigate = useNavigate();  // Initialize navigate
 
-    // Populate form fields with selected row data when rowData is passed
     useEffect(() => {
         if (rowData) {
-            setName(rowData.name || '');
-            setPhone(rowData.phone || '');
-            setEmail(rowData.email || '');
+            // You can use useEffect to populate form values if rowData exists
         }
     }, [rowData]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Prepare updated row data to send back to TableData for updating
-        const updatedRow = {
-            ...rowData,
-            name,
-            phone,
-            email,
-            password // Optional: You can choose to ignore password if not changed
-        };
-        onUpdate(updatedRow); // Send updated data to TableData for updating the row
+    const handleSubmit = async (values, { setSubmitting }) => {
+        // Handle form submission (e.g., send updated data to API or backend)
+        console.log('Updated Admin Data:', values);
+        try {
+            // Here you can call your API to update the admin information
+            // Example: const response = await axios.put('/api/admin/update', values);
+
+            // After successful update, call the onUpdate callback and navigate to another page (optional)
+            onUpdate(values);
+            navigate("/admin-list");  // Navigate to the admin list page after successful update
+        } catch (error) {
+            console.error('Error updating admin:', error);
+            // Handle any submission errors here
+        } finally {
+            setSubmitting(false); // Set submitting to false when done
+        }
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <h6>Edit Admin</h6>
+        <Formik
+            initialValues={{
+                name: rowData ? rowData.name : '',
+                phone: rowData ? rowData.phone : '',
+                email: rowData ? rowData.email : '',
+                password: '',  // Password is optional, but you can change this to an initial value if needed
+            }}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+        >
+            {({ isSubmitting }) => (
+                <FormikForm className="form-admin">
+                    <h6>Edit Admin</h6>
 
-            {/* Admin Name */}
-            <Form.Group controlId="adminName" className="mb-3">
-                <Form.Label>Admin Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter admin name"
-                    required
-                />
-            </Form.Group>
+                    {/* Success/Error Messages */}
+                    {/* You can use state to show success or error messages after submission */}
+                    
+                    <Form.Group controlId="name" className="mb-3">
+                        <Form.Label>Admin Name</Form.Label>
+                        <Field
+                            type="text"
+                            name="name"
+                            className="form-control"
+                            placeholder="Enter admin name"
+                        />
+                        <ErrorMessage name="name" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Admin Phone */}
-            <Form.Group controlId="adminPhone" className="mb-3">
-                <Form.Label>Admin Phone</Form.Label>
-                <Form.Control
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Enter admin phone"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="phone" className="mb-3">
+                        <Form.Label>Admin Phone</Form.Label>
+                        <Field
+                            type="tel"
+                            name="phone"
+                            className="form-control"
+                            placeholder="Enter admin phone"
+                        />
+                        <ErrorMessage name="phone" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Admin Email */}
-            <Form.Group controlId="adminEmail" className="mb-3">
-                <Form.Label>Admin Email</Form.Label>
-                <Form.Control
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter admin email"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="email" className="mb-3">
+                        <Form.Label>Admin Email</Form.Label>
+                        <Field
+                            type="email"
+                            name="email"
+                            className="form-control"
+                            placeholder="Enter admin email"
+                        />
+                        <ErrorMessage name="email" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Admin Password */}
-            <Form.Group controlId="adminPassword" className="mb-3">
-                <Form.Label>Admin Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter admin password"
-                />
-            </Form.Group>
+                    <Form.Group controlId="password" className="mb-3">
+                        <Form.Label>Admin Password</Form.Label>
+                        <Field
+                            type="password"
+                            name="password"
+                            className="form-control"
+                            placeholder="Enter new password (optional)"
+                        />
+                        <ErrorMessage name="password" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Submit Button */}
-            <Button type="submit" variant="primary" className="mt-3">
-                Submit
-            </Button>
-        </Form>
+                    {/* Submit Button */}
+                    <Button type="submit" className="btn-add mt-3" disabled={isSubmitting}>
+                        {isSubmitting ? 'Updating...' : 'Submit'}
+                    </Button>
+                </FormikForm>
+            )}
+        </Formik>
     );
 }
 

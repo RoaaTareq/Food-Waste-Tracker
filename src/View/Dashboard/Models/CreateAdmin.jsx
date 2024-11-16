@@ -1,85 +1,85 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";  // Import useNavigate
-import { Form, Button } from "react-bootstrap";  // Import React Bootstrap Form and Button components
+import { useNavigate } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
+import { Formik, Field, Form as FormikForm, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+    name: Yup.string().required("Admin name is required"),
+    phone: Yup.string()
+        .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
+        .required("Phone number is required"),
+    email: Yup.string().email("Invalid email address").required("Admin email is required"),
+    password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+});
 
 function CreateAdmin() {
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();  // Initialize navigate
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission (e.g., send data to API or backend)
-        console.log("Admin Name:", name);
-        console.log("Admin Phone:", phone);
-        console.log("Admin Email:", email);
-        console.log("Admin Password:", password);
-        
-        // Add your API call or backend logic here.
-        
-        // After form submission is successful, navigate to another page (e.g., admin list)
-        navigate("/admin-list");  // Replace "/admin-list" with the appropriate path
+    const handleSubmit = async (values, { setSubmitting }) => {
+        //
+        console.log("Form Submitted:", values);
+
+        try {
+            // Here, you can call your API or backend to submit the form data.
+            // For example:
+            // const response = await axios.post('/api/admin', values);
+
+            // If successful, navigate to the admin list page
+            navigate("/admin-list");
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            // Handle error (e.g., show an alert)
+        } finally {
+            setSubmitting(false); // Set submitting to false when done
+        }
     };
 
     return (
-        <Form onSubmit={handleSubmit} className="form-admin">
-            <h6>Create Admin</h6>
+        <Formik
+            initialValues={{
+                name: "",
+                phone: "",
+                email: "",
+                password: "",
+            }}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+        >
+            {({ isSubmitting }) => (
+                <FormikForm className="form-admin">
+                    <h6>Create Admin</h6>
 
-            {/* Admin Name */}
-            <Form.Group controlId="adminName" className="mb-3">
-                <Form.Label>Admin Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter admin name"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="name" className="mb-3">
+                        <Form.Label>Admin Name</Form.Label>
+                        <Field type="text" name="name" className="form-control" placeholder="Enter admin name" />
+                        <ErrorMessage name="name" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Admin Phone */}
-            <Form.Group controlId="adminPhone" className="mb-3">
-                <Form.Label>Admin Phone</Form.Label>
-                <Form.Control
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Enter admin phone"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="phone" className="mb-3">
+                        <Form.Label>Admin Phone</Form.Label>
+                        <Field type="tel" name="phone" className="form-control" placeholder="Enter admin phone" />
+                        <ErrorMessage name="phone" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Admin Email */}
-            <Form.Group controlId="adminEmail" className="mb-3">
-                <Form.Label>Admin Email</Form.Label>
-                <Form.Control
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter admin email"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="email" className="mb-3">
+                        <Form.Label>Admin Email</Form.Label>
+                        <Field type="email" name="email" className="form-control" placeholder="Enter admin email" />
+                        <ErrorMessage name="email" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Admin Password */}
-            <Form.Group controlId="adminPassword" className="mb-3">
-                <Form.Label>Admin Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter admin password"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="password" className="mb-3">
+                        <Form.Label>Admin Password</Form.Label>
+                        <Field type="password" name="password" className="form-control" placeholder="Enter admin password" />
+                        <ErrorMessage name="password" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Submit Button */}
-            <Button type="submit" className="btn-add mt-3">
-                Submit
-            </Button>
-        </Form>
+                    <Button type="submit" className="btn-add mt-3" disabled={isSubmitting}>
+                        {isSubmitting ? "Submitting..." : "Submit"}
+                    </Button>
+                </FormikForm>
+            )}
+        </Formik>
     );
 }
 

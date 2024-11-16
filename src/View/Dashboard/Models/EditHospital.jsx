@@ -1,77 +1,98 @@
-import React, { useState, useEffect } from "react";
-import { Form, Button, Alert } from "react-bootstrap"; // Import necessary components from React Bootstrap
+import React, { useEffect } from "react";
+import { Form, Button } from "react-bootstrap"; 
+import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';  
+import * as Yup from 'yup'; 
+
+
+const validationSchema = Yup.object({
+    name: Yup.string().required('Hospital name is required'),
+    address: Yup.string().required('Hospital address is required'),
+    phone: Yup.string()
+        .required('Hospital phone is required')
+        .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
+});
 
 function EditHospital({ rowData, onUpdate }) {
-    const [name, setName] = useState('');
-    const [address, setAddress] = useState('');
-    const [phone, setPhone] = useState('');
-
-    // Pre-fill the form with the selected row's data when the row is passed
     useEffect(() => {
+        
         if (rowData) {
-            setName(rowData.name);
-            setAddress(rowData.address);
-            setPhone(rowData.phone);
+            
         }
     }, [rowData]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Prepare updated row data and pass it back to TableData for updating
+    const handleSubmit = async (values, { setSubmitting }) => {
         const updatedRow = {
-            ...rowData,
-            name,
-            address,
-            phone
+            id: rowData.id,  // Include the id in the updated row data
+            ...values,  // Spread form values from Formik
         };
-        onUpdate(updatedRow); // Pass the updated row back to TableData
+
+        try {
+            // Pass the updated row back to the parent component (TableData)
+            onUpdate(updatedRow);
+        } catch (error) {
+            console.error('Error updating hospital:', error);
+        } finally {
+            setSubmitting(false);  // Stop the submitting state
+        }
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <h6>Edit Hospital</h6>
+        <Formik
+            initialValues={{
+                name: rowData ? rowData.name : '',
+                address: rowData ? rowData.address : '',
+                phone: rowData ? rowData.phone : ''
+            }}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+        >
+            {({ isSubmitting }) => (
+                <FormikForm>
+                    <h6>Edit Hospital</h6>
 
-            {/* Hospital Name */}
-            <Form.Group controlId="hospitalName" className="mb-3">
-                <Form.Label>Hospital Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter hospital name"
-                    required
-                />
-            </Form.Group>
+                   
+                    <Form.Group controlId="name" className="mb-3">
+                        <Form.Label>Hospital Name</Form.Label>
+                        <Field
+                            type="text"
+                            name="name"
+                            className="form-control"
+                            placeholder="Enter hospital name"
+                        />
+                        <ErrorMessage name="name" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Hospital Address */}
-            <Form.Group controlId="hospitalAddress" className="mb-3">
-                <Form.Label>Hospital Address</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Enter hospital address"
-                    required
-                />
-            </Form.Group>
+                    
+                    <Form.Group controlId="address" className="mb-3">
+                        <Form.Label>Hospital Address</Form.Label>
+                        <Field
+                            type="text"
+                            name="address"
+                            className="form-control"
+                            placeholder="Enter hospital address"
+                        />
+                        <ErrorMessage name="address" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Hospital Phone */}
-            <Form.Group controlId="hospitalPhone" className="mb-3">
-                <Form.Label>Hospital Phone</Form.Label>
-                <Form.Control
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Enter hospital phone"
-                    required
-                />
-            </Form.Group>
+                    
+                    <Form.Group controlId="phone" className="mb-3">
+                        <Form.Label>Hospital Phone</Form.Label>
+                        <Field
+                            type="tel"
+                            name="phone"
+                            className="form-control"
+                            placeholder="Enter hospital phone"
+                        />
+                        <ErrorMessage name="phone" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Submit Button */}
-            <Button type="submit" variant="primary" className="mt-3">
-                Submit
-            </Button>
-        </Form>
+                   
+                    <Button type="submit" variant="primary" className="mt-3" disabled={isSubmitting}>
+                        {isSubmitting ? 'Submitting...' : 'Submit'}
+                    </Button>
+                </FormikForm>
+            )}
+        </Formik>
     );
 }
 

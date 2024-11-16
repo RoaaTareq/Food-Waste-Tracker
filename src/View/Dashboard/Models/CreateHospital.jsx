@@ -1,26 +1,36 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import axios for API calls
-import { Form, Button, Alert } from "react-bootstrap";  // Import necessary components from React Bootstrap
+import axios from "axios";
+import { Form, Button, Alert } from "react-bootstrap";
+import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';  
+import * as Yup from 'yup';  
+
+const validationSchema = Yup.object({
+    hospitalName: Yup.string().required('Hospital name is required'),
+    hospitalAddress: Yup.string().required('Hospital address is required'),
+    hospitalPhone: Yup.string()
+        .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
+        .required('Hospital phone is required'),
+    ownerName: Yup.string().required('Owner name is required'),
+    ownerEmail: Yup.string().email('Invalid email address').required('Owner email is required'),
+    ownerPassword: Yup.string()
+        .min(6, 'Password must be at least 6 characters')
+        .required('Owner password is required'),
+    ownerPasswordConfirm: Yup.string()
+        .oneOf([Yup.ref('ownerPassword'), null], 'Passwords must match')
+        .required('Password confirmation is required'),
+});
 
 function CreateHospital() {
-    const [hospitalName, setHospitalName] = useState('');
-    const [hospitalAddress, setHospitalAddress] = useState('');
-    const [hospitalPhone, setHospitalPhone] = useState('');
-    const [ownerName, setOwnerName] = useState('');
-    const [ownerEmail, setOwnerEmail] = useState('');
-    const [ownerPassword, setOwnerPassword] = useState('');
-    const [ownerPasswordConfirm, setOwnerPasswordConfirm] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const [loading, setLoading] = useState(false);  // Loading state
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (values) => {
         setError('');
         setSuccess('');
-        setLoading(true); // Set loading to true
+        setLoading(true);
 
-        // Get the token from localStorage (assuming it's stored there after login)
+        // Get the token from localStorage
         const token = localStorage.getItem('token');
 
         if (!token) {
@@ -31,35 +41,32 @@ function CreateHospital() {
 
         try {
             // Send a POST request to the backend API to register the hospital and owner
-            const response = await axios.post('http://127.0.0.1:8000/api/hospitals', 
-                {
-                    hospital_name: hospitalName,
-                    hospital_address: hospitalAddress,
-                    hospital_phone: hospitalPhone,
-                    owner_name: ownerName,
-                    owner_email: ownerEmail,
-                    owner_password: ownerPassword,
-                    owner_password_confirmation: ownerPasswordConfirm,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-                    }
+            const response = await axios.post('http://127.0.0.1:8000/api/hospitals', {
+                hospital_name: values.hospitalName,
+                hospital_address: values.hospitalAddress,
+                hospital_phone: values.hospitalPhone,
+                owner_name: values.ownerName,
+                owner_email: values.ownerEmail,
+                owner_password: values.ownerPassword,
+                owner_password_confirmation: values.ownerPasswordConfirm,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
                 }
-            );
+            });
 
             // If successful, display a success message
             setSuccess('Hospital and owner registered successfully!');
             console.log('Hospital registered:', response.data);
 
             // Clear the input fields after submission
-            setHospitalName('');
-            setHospitalAddress('');
-            setHospitalPhone('');
-            setOwnerName('');
-            setOwnerEmail('');
-            setOwnerPassword('');
-            setOwnerPasswordConfirm('');
+            values.hospitalName = '';
+            values.hospitalAddress = '';
+            values.hospitalPhone = '';
+            values.ownerName = '';
+            values.ownerEmail = '';
+            values.ownerPassword = '';
+            values.ownerPasswordConfirm = '';
 
         } catch (err) {
             console.error('Error registering hospital:', err);
@@ -69,102 +76,115 @@ function CreateHospital() {
                 setError('An error occurred. Please try again.');
             }
         } finally {
-            setLoading(false); // Stop the loading state
+            setLoading(false);
         }
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <h6>Create Hospital and Owner</h6>
+        <Formik
+            initialValues={{
+                hospitalName: '',
+                hospitalAddress: '',
+                hospitalPhone: '',
+                ownerName: '',
+                ownerEmail: '',
+                ownerPassword: '',
+                ownerPasswordConfirm: '',
+            }}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+        >
+            {({ isSubmitting }) => (
+                <FormikForm>
+                    <h6>Create Hospital</h6>
 
-            {/* Display success or error message */}
-            {success && <Alert variant="success">{success}</Alert>}
-            {error && <Alert variant="danger">{error}</Alert>}
+                    {/* Display success or error message */}
+                    {success && <Alert variant="success">{success}</Alert>}
+                    {error && <Alert variant="danger">{error}</Alert>}
 
-            {/* Hospital Details */}
-            <Form.Group controlId="hospitalName" className="mb-3">
-                <Form.Label>Hospital Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={hospitalName}
-                    onChange={(e) => setHospitalName(e.target.value)}
-                    placeholder="Enter hospital name"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="hospitalName" className="mb-3">
+                        <Form.Label>Hospital Name</Form.Label>
+                        <Field
+                            type="text"
+                            name="hospitalName"
+                            className="form-control"
+                            placeholder="Enter hospital name"
+                        />
+                        <ErrorMessage name="hospitalName" component="div" className="text-danger" />
+                    </Form.Group>
 
-            <Form.Group controlId="hospitalAddress" className="mb-3">
-                <Form.Label>Hospital Address</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={hospitalAddress}
-                    onChange={(e) => setHospitalAddress(e.target.value)}
-                    placeholder="Enter hospital address"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="hospitalAddress" className="mb-3">
+                        <Form.Label>Hospital Address</Form.Label>
+                        <Field
+                            type="text"
+                            name="hospitalAddress"
+                            className="form-control"
+                            placeholder="Enter hospital address"
+                        />
+                        <ErrorMessage name="hospitalAddress" component="div" className="text-danger" />
+                    </Form.Group>
 
-            <Form.Group controlId="hospitalPhone" className="mb-3">
-                <Form.Label>Hospital Phone</Form.Label>
-                <Form.Control
-                    type="tel"
-                    value={hospitalPhone}
-                    onChange={(e) => setHospitalPhone(e.target.value)}
-                    placeholder="Enter hospital phone"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="hospitalPhone" className="mb-3">
+                        <Form.Label>Hospital Phone</Form.Label>
+                        <Field
+                            type="tel"
+                            name="hospitalPhone"
+                            className="form-control"
+                            placeholder="Enter hospital phone"
+                        />
+                        <ErrorMessage name="hospitalPhone" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Owner Details */}
-            <Form.Group controlId="ownerName" className="mb-3">
-                <Form.Label>Owner Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={ownerName}
-                    onChange={(e) => setOwnerName(e.target.value)}
-                    placeholder="Enter owner's name"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="ownerName" className="mb-3">
+                        <Form.Label>Owner Name</Form.Label>
+                        <Field
+                            type="text"
+                            name="ownerName"
+                            className="form-control"
+                            placeholder="Enter owner's name"
+                        />
+                        <ErrorMessage name="ownerName" component="div" className="text-danger" />
+                    </Form.Group>
 
-            <Form.Group controlId="ownerEmail" className="mb-3">
-                <Form.Label>Owner Email</Form.Label>
-                <Form.Control
-                    type="email"
-                    value={ownerEmail}
-                    onChange={(e) => setOwnerEmail(e.target.value)}
-                    placeholder="Enter owner's email"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="ownerEmail" className="mb-3">
+                        <Form.Label>Owner Email</Form.Label>
+                        <Field
+                            type="email"
+                            name="ownerEmail"
+                            className="form-control"
+                            placeholder="Enter owner's email"
+                        />
+                        <ErrorMessage name="ownerEmail" component="div" className="text-danger" />
+                    </Form.Group>
 
-            <Form.Group controlId="ownerPassword" className="mb-3">
-                <Form.Label>Owner Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    value={ownerPassword}
-                    onChange={(e) => setOwnerPassword(e.target.value)}
-                    placeholder="Enter owner's password"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="ownerPassword" className="mb-3">
+                        <Form.Label>Owner Password</Form.Label>
+                        <Field
+                            type="password"
+                            name="ownerPassword"
+                            className="form-control"
+                            placeholder="Enter owner's password"
+                        />
+                        <ErrorMessage name="ownerPassword" component="div" className="text-danger" />
+                    </Form.Group>
 
-            <Form.Group controlId="ownerPasswordConfirm" className="mb-3">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    value={ownerPasswordConfirm}
-                    onChange={(e) => setOwnerPasswordConfirm(e.target.value)}
-                    placeholder="Confirm owner's password"
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="ownerPasswordConfirm" className="mb-3">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Field
+                            type="password"
+                            name="ownerPasswordConfirm"
+                            className="form-control"
+                            placeholder="Confirm owner's password"
+                        />
+                        <ErrorMessage name="ownerPasswordConfirm" component="div" className="text-danger" />
+                    </Form.Group>
 
-            {/* Submit Button */}
-            <Button type="submit" variant="primary" className="mt-3" disabled={loading}>
-                {loading ? 'Submitting...' : 'Submit'}
-            </Button>
-        </Form>
+                    <Button type="submit" variant="primary" className="mt-3" disabled={isSubmitting || loading}>
+                        {loading ? 'Submitting...' : 'Submit'}
+                    </Button>
+                </FormikForm>
+            )}
+        </Formik>
     );
 }
 
