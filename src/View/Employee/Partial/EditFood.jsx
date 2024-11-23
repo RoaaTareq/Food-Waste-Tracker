@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-function CreateFood() {
+function EditFood() {
   return (
     <Form className='bg-form'>
       <Form.Group controlId="category">
@@ -41,4 +41,4 @@ function CreateFood() {
   );
 }
 
-export default CreateFood;
+export default EditFood;

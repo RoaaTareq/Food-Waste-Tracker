@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SidebarDashboard from './Layout/Sidebar';
-import Employee from '../Employee/Partial/tes';
-import Data from '../Dashboard/Data'
-
+import Employee from './Partial/Header';  // Employee component
+import Data from '../Dashboard/Data';  // Data component
+import CreateFood from '../Employee/Partial/CreateFood'
+import EditFood from '../Employee/Partial/EditFood'
 function EmployeeDashboard() {
   return (
     <>
@@ -12,8 +13,11 @@ function EmployeeDashboard() {
         <div className="container">
          
           <Routes>
+           
             <Route path="employee" element={<Employee />} />
-            <Route path="data" element={<Data />} />
+            <Route path="/data" element={<Data />} />
+            <Route path="create/food" element={<CreateFood />} />
+            <Route path="edit/food" element={<EditFood />} />
           </Routes>
         </div>
       </section>

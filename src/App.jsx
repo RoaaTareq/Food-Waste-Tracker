@@ -5,7 +5,7 @@ import Navbar from './View/Layout/Navbar';
 import Login from './View/Auth/Login';
 import Dashboard from './View/Dashboard/dashboard';
 import Hoispital from './View/Hosiptal/hosiptal';
-import Employee from './View/Employee/employee'
+import Employee from './View/Employee/employee';
 import ProtectedRoute from '../src/Route/ProtectedRoute'; // Import the ProtectedRoute component
 
 // Function to check authentication
@@ -15,7 +15,7 @@ const checkAuth = () => {
 };
 
 const App = () => {
-  // State to track authentication status (no need to specify 'boolean')
+  // State to track authentication status
   const [isAuthenticated, setIsAuthenticated] = useState(checkAuth());
 
   // Listen for changes to localStorage (i.e., login/logout events)
@@ -40,29 +40,29 @@ const App = () => {
 
   return (
     <Router>
-      {/* Conditionally render Navbar based on authentication */}
-      {!isAuthenticated && <Navbar />}
-      
+    
+
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login updateAuth={updateAuth} />} />
+        {/* Public Route for Login */}
+        <Route path="/" element={<Login updateAuth={updateAuth} />} />
 
         {/* Admin Protected Route */}
-        <Route 
-          path="/dashboard/*" 
-          element={<ProtectedRoute component={Dashboard} allowedRoles={['admin']} />} 
+        <Route
+          path="/dashboard"
+          element={<ProtectedRoute component={Dashboard} allowedRoles={['admin']} />}
         />
 
         {/* Hospital Owner Protected Route */}
-        <Route 
-          path="/hoispital/*" 
-          element={<ProtectedRoute component={Hoispital} allowedRoles={['hospital']} />} 
+        <Route
+          path="/hoispital"
+          element={<ProtectedRoute component={Hoispital} allowedRoles={['hospital']} />}
         />
- <Route 
-          path="/employee/*" 
-          element={<ProtectedRoute component={Employee} allowedRoles={['employee']} />} 
+
+        {/* Employee Route */}
+        <Route
+          path="/employee/*"
+          element={<Employee />}
         />
-        {/* Add more routes as needed */}
       </Routes>
     </Router>
   );

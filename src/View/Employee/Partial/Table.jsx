@@ -1,56 +1,45 @@
 import React from "react";
-
-function Table({ foodWasteData, handleEdit, handleDelete }) {
+import { Table, Button } from "react-bootstrap";
+import { Link } from 'react-router-dom';
+function FoodWasteTable() {
   return (
     <div>
-      <h2>Food Waste Data</h2>
-      {foodWasteData.length === 0 ? (
-        <p>No data available</p>
-      ) : (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Item</th>
-              <th>Quantity</th>
-              <th>Reason</th>
-              <th>Time</th>
-              <th>Meal</th>
-              <th>Note</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {foodWasteData.map((data, index) => (
-              <tr key={index}>
-                <td>{data.category}</td>
-                <td>{data.item}</td>
-                <td>{data.quantity}</td>
-                <td>{data.reason}</td>
-                <td>{data.time}</td>
-                <td>{data.meal}</td>
-                <td>{data.note}</td>
-                <td>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => handleEdit(index)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(index)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      {/* Table displaying food waste data */}
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Reason</th>
+            <th>Time</th>
+            <th>Meal</th>
+            <th>Note</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Sample row of food waste data */}
+          <tr>
+            <td>ff</td>
+            <td>yy</td>
+            <td>20</td>
+            <td>20</td>
+            <td>44</td>
+            <td>njkbh</td>
+            <td>88</td>
+            <td>
+              {/* Edit and Delete buttons */}
+              <Link to ='edit/food'variant="primary" className="me-2">
+                Edit
+              </Link>
+              <Button variant="danger">Delete</Button>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
   );
 }
 
-export default Table;
+export default FoodWasteTable;
