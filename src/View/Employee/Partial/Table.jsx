@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function FoodWasteTable() {
   return (
     <div>
-      {/* Table displaying food waste data */}
+    
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -30,7 +30,7 @@ function FoodWasteTable() {
             <td>88</td>
             <td>
               {/* Edit and Delete buttons */}
-              <Link to ='edit/food'variant="primary" className="me-2">
+              <Link to ='edit/food'variant="primary"  className="me-2 btn btn-primary">
                 Edit
               </Link>
               <Button variant="danger">Delete</Button>

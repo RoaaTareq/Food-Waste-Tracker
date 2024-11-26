@@ -1,31 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
 import Button from "../../../Components/Buttons/Buttons";
-import CreateHospital from "../Models/CreateHospital"; // Import the CreateCategory form
+import CreateHospital from "../Models/CreateHospital"; 
 
 function HeaderHospital() {
-    const [showForm, setShowForm] = useState(false); // State to manage form visibility
+    const [showForm, setShowForm] = useState(false);
     const formRef = useRef(null);
 
     const toggleForm = () => {
-        setShowForm(!showForm); // Toggle form visibility
+        setShowForm(!showForm); 
     };
 
-    // Function to handle click outside the form
+   
     const handleClickOutside = (e) => {
         if (formRef.current && !formRef.current.contains(e.target)) {
-            setShowForm(false); // Close the form if clicked outside
+            setShowForm(false); 
         }
     };
 
     useEffect(() => {
-        // Attach event listener when the form is visible
+        
         if (showForm) {
             document.addEventListener("mousedown", handleClickOutside);
         } else {
             document.removeEventListener("mousedown", handleClickOutside);
         }
 
-        // Cleanup event listener when component is unmounted or form is hidden
+        
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
@@ -33,7 +33,7 @@ function HeaderHospital() {
 
     return (
         <div>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between pt-5">
                 <h1>Hospital Info</h1>
                 <div>
                     <Button className="btn-add" onClick={toggleForm}>

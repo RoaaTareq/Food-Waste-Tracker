@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Button from '../../../Components/Buttons/Buttons';
-import CreateAdmin from '../Models/CreateAdmin';  // Import the CreateAdmin form
+import CreateAdmin from '../Models/CreateAdmin'; 
 
 function Header() {
-  const [showForm, setShowForm] = useState(false); // State to toggle form visibility
+  const [showForm, setShowForm] = useState(false); 
 
   const handleButtonClick = () => {
-    setShowForm(prevState => !prevState); // Toggles form visibility
+    setShowForm(prevState => !prevState); 
   };
 
   return (
@@ -21,7 +21,7 @@ function Header() {
       </div>
 
       {showForm && (
-        <CreateAdmin />  // Show form if showForm is true
+        <CreateAdmin />  
       )}
     </div>
   );

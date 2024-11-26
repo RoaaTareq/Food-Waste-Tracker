@@ -51,9 +51,9 @@ function SidebarDashboard() {
         <li>
           <Link to="employee">
           <i className="bx bx-grid-alt"></i>
-            <span className="links_name">Employee</span>
+            <span className="links_name">Food item</span>
           </Link>
-          <span className="tooltip">Employee</span>
+          <span className="tooltip">Food item</span>
         </li>
         <li className="profile">
           <div className="profile-details">

@@ -41,13 +41,7 @@ function SidebarDashboard() {
           </Link>
           <span className="tooltip">data</span>
         </li>
-        <li>
-          <Link to="/dashboard">
-            <i className="bx bx-grid-alt"></i>
-            <span className="links_name">Admin</span>
-          </Link>
-          <span className="tooltip">Admin</span>
-        </li>
+      
         <li>
           <Link to="category">
             <i className="bx bx-user"></i>

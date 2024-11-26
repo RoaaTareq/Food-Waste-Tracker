@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Table from '../../../Components/Table/Table';
-import EditAdmin from '../Models/EditAdmin'; // Import the EditAdmin form
+import EditAdmin from '../Models/EditAdmin'; 
 
 const TableData = () => {
   const [data, setData] = useState([
@@ -8,8 +8,8 @@ const TableData = () => {
     { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '0987654321' }
   ]);
 
-  const [isEditing, setIsEditing] = useState(false); // To toggle between Table and Form
-  const [selectedRow, setSelectedRow] = useState(null); // To store the row being edited
+  const [isEditing, setIsEditing] = useState(false); 
+  const [selectedRow, setSelectedRow] = useState(null); 
 
   const columns = [
     { label: 'Name', key: 'name' },
@@ -17,16 +17,16 @@ const TableData = () => {
   ];
 
   const handleEdit = (row) => {
-    setSelectedRow(row); // Store the row's data for editing
-    setIsEditing(true);  // Toggle to the EditAdmin form
+    setSelectedRow(row); 
+    setIsEditing(true); 
   };
 
   const handleDelete = (row) => {
-    setData(data.filter(item => item.id !== row.id)); // Example delete logic
+    setData(data.filter(item => item.id !== row.id)); 
   };
 
   const handleUpdate = (updatedRow) => {
-    // Update the data with the updated row
+    
     setData(data.map(item => (item.id === updatedRow.id ? updatedRow : item)));
     setIsEditing(false); // Hide the form after update
   };

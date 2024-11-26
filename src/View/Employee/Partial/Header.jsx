@@ -9,10 +9,10 @@ function Header() {
 
   return (
     <div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between pt-5">
         <h1>Food Waste Info</h1>
         <div>
-          <Link to='create/food' className="btn-add" >
+          <Link to='create/food' className="btn btn-primary" >
            Add Food Item
           </Link>
         </div>
