@@ -5,6 +5,8 @@ import Category from './Category';
 import Hoispital from './Hoispital';
 import ADDCategory from '../Dashboard/Models/CreateCategory'
 import EditCategory  from '../Dashboard/Models/EditCategory'
+import ADDHospital from '../Dashboard/Models/CreateHospital'
+import EditHospital  from '../Dashboard/Models/EditHospital'
 import Data from './Data'
 
 function Dashboard() {
@@ -20,6 +22,8 @@ function Dashboard() {
             <Route path="/category" element={<Category />} />
             <Route path="/category/add-category" element={<ADDCategory />} />
             <Route path ="/category/edit-category" element={<EditCategory />} />
+            <Route path ="/hospital/add-hospital" element={<ADDHospital />} />
+            <Route path ="/hospital/edit-hospital" element={<EditHospital />} />
             <Route path="/hoispital" element={<Hoispital />} />
           </Routes>
         </div>

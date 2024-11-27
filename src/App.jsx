@@ -1,68 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './View/Home/Home';
-import Navbar from './View/Layout/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Views
 import Login from './View/Auth/Login';
 import Dashboard from './View/Dashboard/dashboard';
-import Hoispital from './View/Hosiptal/hosiptal';
+import Hospital from './View/Hosiptal/hosiptal'; // Fixing spelling
 import Employee from './View/Employee/employee';
-import ProtectedRoute from '../src/Route/ProtectedRoute'; // Import the ProtectedRoute component
 
-// Function to check authentication
+// Routes
+import ProtectedRoute from '../src/Route/ProtectedRoute';
+
+// Authentication Check
 const checkAuth = () => {
-  const token = localStorage.getItem('token');
-  return token ? true : false;
+  return localStorage.getItem('token') ? true : false;
 };
 
 const App = () => {
-  // State to track authentication status
   const [isAuthenticated, setIsAuthenticated] = useState(checkAuth());
 
-  // Listen for changes to localStorage (i.e., login/logout events)
   useEffect(() => {
     const handleStorageChange = () => {
       setIsAuthenticated(checkAuth());
     };
 
-    // Add an event listener for storage changes
+    // Listen for changes in localStorage (such as logging out)
     window.addEventListener('storage', handleStorageChange);
 
-    // Clean up the event listener
+    // Clean up the event listener when the component is unmounted
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
 
-  // Function to update authentication state after login
+  // Update authentication state after login
   const updateAuth = () => {
     setIsAuthenticated(checkAuth());
   };
 
   return (
     <Router>
-    
-
       <Routes>
-        {/* Public Route for Login */}
+        {/* Public Routes */}
         <Route path="/" element={<Login updateAuth={updateAuth} />} />
 
-        {/* Admin Protected Route */}
+        {/* Protected Routes */}
         <Route
-          path="/dashboard"
-          element={<ProtectedRoute component={Dashboard} allowedRoles={['admin']} />}
-        />
-
-        {/* Hospital Owner Protected Route */}
+          path="/dashboard/*"
+          element={<Dashboard/>} />
+        
         <Route
-          path="/hoispital"
-          element={<ProtectedRoute component={Hoispital} allowedRoles={['hospital']} />}
+          path="/hospital"
+          element={<ProtectedRoute component={Hospital} allowedRoles={['hospital']} />}
         />
-
-        {/* Employee Route */}
-        <Route
-          path="/employee/*"
-          element={<Employee />}
-        />
+        <Route path="/employee/*" element={<Employee />} />
       </Routes>
     </Router>
   );

@@ -46,7 +46,7 @@ const DataTable = () => {
                     <Link
                     to='/dashboard/category/edit-category'
                       variant="primary" 
-                      className="me-2" 
+                      className="me-2 btn btn-primary" 
                       onClick={() => handleEdit(item.id)}>
                       Edit
                     </Link>
