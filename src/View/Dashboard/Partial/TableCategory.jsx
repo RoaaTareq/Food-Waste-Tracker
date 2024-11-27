@@ -1,5 +1,6 @@
 import React from 'react';
 import HeaderCategory from './HeaderCategory';
+import { Link } from 'react-router-dom';
 import { Table, Button, Container, Row, Col } from 'react-bootstrap';
 
 const DataTable = () => {
@@ -42,12 +43,13 @@ const DataTable = () => {
                   <td>{item.name}</td>
                   <td>{item.description}</td>
                   <td>
-                    <Button 
+                    <Link
+                    to='/dashboard/category/edit-category'
                       variant="primary" 
                       className="me-2" 
                       onClick={() => handleEdit(item.id)}>
                       Edit
-                    </Button>
+                    </Link>
                     <Button 
                       variant="danger" 
                       onClick={() => handleDelete(item.id)} 

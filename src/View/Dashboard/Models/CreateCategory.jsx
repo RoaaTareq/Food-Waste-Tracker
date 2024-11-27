@@ -1,101 +1,105 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Formik, Field, Form as FormikForm, ErrorMessage } from "formik";
-import { createCategory } from '../../services/categoryAPI';
-import * as Yup from 'yup';
+import { createCategory } from "../../services/categoryAPI";
+import * as Yup from "yup";
 
 // Validation Schema
 const validationSchema = Yup.object({
-    name: Yup.string().required('Category name is required'),
-    description: Yup.string().optional()
+  name: Yup.string().required("Category name is required"),
+  description: Yup.string().optional(),
 });
 
+// Reusable form field component for better readability
+const FormField = ({ label, name, placeholder, as = "input", rows }) => (
+  <Form.Group controlId={name} className="mb-3">
+    <Form.Label>{label}</Form.Label>
+    <Field
+      as={as}
+      name={name}
+      rows={rows}
+      className="form-control"
+      placeholder={placeholder}
+    />
+    <ErrorMessage name={name} component="div" className="text-danger" />
+  </Form.Group>
+);
+
 function CreateCategory({ onSuccess }) {
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState({ text: "", type: "" });
 
-    // Handle form submission
-    const handleSubmit = async (values, { setSubmitting }) => {
-        const { name, description } = values;
+  const handleSubmit = async (values, { setSubmitting }) => {
+    const { name, description } = values;
+    setMessage({ text: "", type: "" }); // Reset messages
 
-        setErrorMessage(''); // Reset error message
-        setSuccessMessage(''); // Reset success message
+    const token = localStorage.getItem("token");
 
-        // Get the token from localStorage (assuming it's stored there after login)
-        const token = localStorage.getItem('token');
+    if (!token) {
+      setMessage({ text: "You are not authorized to create a category. Please login.", type: "error" });
+      setSubmitting(false);
+      return;
+    }
 
-        if (!token) {
-            setErrorMessage("You are not authorized to create a category. Please login.");
-            setSubmitting(false);
-            return;
-        }
+    try {
+      const response = await createCategory({ name, description }, token);
+      setMessage({ text: "Category created successfully!", type: "success" });
+      onSuccess(); // Call the onSuccess callback to refresh the table or close modal
+    } catch (error) {
+      console.error("Error creating category:", error);
+      setMessage({
+        text: error.response?.data?.message || "An error occurred while creating the category.",
+        type: "error",
+      });
+    } finally {
+      setSubmitting(false); // Stop the submitting state
+    }
+  };
 
-        try {
-            // Call the service to create a category
-            const response = await createCategory({ name, description }, token);
-            
-            // On success, show success message and trigger onSuccess
-            setSuccessMessage("Category created successfully!");
-            onSuccess();  // Call the onSuccess callback to refresh the table or close modal
-
-        } catch (error) {
-            console.error('Error creating category:', error);
-            setErrorMessage(error.response?.data?.message || 'An error occurred while creating the category.');
-        } finally {
-            setSubmitting(false);  // Stop the submitting state
-        }
-    };
-
-    return (
+  return (
+    <section className="pt-4">
+      <div className="container">
         <Formik
-            initialValues={{
-                name: '',
-                description: ''
-            }}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
+          initialValues={{
+            name: "",
+            description: "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
         >
-            {({ isSubmitting }) => (
-                <FormikForm>
-                    <h6>Create Category</h6>
+          {({ isSubmitting }) => (
+            <FormikForm className="add-form pt-4 form mb-3">
+              <h6 className="sub-title">Create Category</h6>
 
-               
-                    {successMessage && <div className="text-success">{successMessage}</div>}
-                    {errorMessage && <div className="text-danger">{errorMessage}</div>}
+              {/* Success or Error Message */}
+              {message.text && (
+                <div className={`text-${message.type === "error" ? "danger" : "success"}`}>
+                  {message.text}
+                </div>
+              )}
 
-                 
-                    <Form.Group controlId="categoryName" className="mb-3">
-                        <Form.Label>Category Name</Form.Label>
-                        <Field
-                            type="text"
-                            name="name"
-                            className="form-control"
-                            placeholder="Enter category name"
-                        />
-                        <ErrorMessage name="name" component="div" className="text-danger" />
-                    </Form.Group>
+              <FormField
+                label="Category Name"
+                name="name"
+                placeholder="Enter category name"
+              />
 
-                 
-                    <Form.Group controlId="categoryDescription" className="mb-3">
-                        <Form.Label>Category Description</Form.Label>
-                        <Field
-                            as="textarea"
-                            name="description"
-                            rows={3}
-                            className="form-control"
-                            placeholder="Enter category description"
-                        />
-                        <ErrorMessage name="description" component="div" className="text-danger" />
-                    </Form.Group>
+              <FormField
+                label="Category Description"
+                name="description"
+                placeholder="Enter category description"
+                as="textarea"
+                rows={3}
+              />
 
-                   
-                    <Button type="submit" className="btn-add" variant="primary" disabled={isSubmitting}>
-                        {isSubmitting ? 'Submitting...' : 'Submit'}
-                    </Button>
-                </FormikForm>
-            )}
+              <Button type="submit" className="btn-add" variant="primary" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
+            </FormikForm>
+          )}
         </Formik>
-    );
+      </div>
+    </section>
+  );
 }
 
 export default CreateCategory;

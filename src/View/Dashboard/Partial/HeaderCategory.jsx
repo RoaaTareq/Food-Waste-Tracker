@@ -1,60 +1,30 @@
-import React, { useState, useRef, useEffect } from "react";
-import Button from "../../../Components/Buttons/Buttons";
+import React from "react";
+import { Link } from 'react-router-dom';
+
 import CreateCategory from "../Models/CreateCategory";
 
-function HeaderCategory({ refreshTable }) { 
-    const [showForm, setShowForm] = useState(false); 
-    const formRef = useRef(null);
+function HeaderCategory() { 
 
-    const toggleForm = () => {
-        setShowForm(!showForm); 
-    };
 
   
-    const handleClickOutside = (e) => {
-        if (formRef.current && !formRef.current.contains(e.target)) {
-            setShowForm(false);
-        }
-    };
+   
 
-    useEffect(() => {
-        
-        if (showForm) {
-            document.addEventListener("mousedown", handleClickOutside);
-        } else {
-            document.removeEventListener("mousedown", handleClickOutside);
-        }
-
-        
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [showForm]);
+  
 
     
-    const handleSuccess = () => {
-        setShowForm(false); 
-        refreshTable();     
-    };
 
     return (
         <div>
             <div className="d-flex justify-content-between pt-5">
                 <h1 className="main-title">Category Info</h1>
                 <div>
-                    <Button className="btn-add mb-2 " onClick={toggleForm}>
-                        {showForm ? "Close Form" : "Add Category +"}
-                    </Button>
+                    <Link to="/dashboard/category/add-category" className="btn btn-primary btn-add mb-2 " >
+                        Add Category +
+                    </Link>
                 </div>
             </div>
 
-            {showForm && (
-                <div className="overlay">
-                    <div className="form-container" ref={formRef}>
-                        <CreateCategory onSuccess={handleSuccess} /> 
-                    </div>
-                </div>
-            )}
+            
         </div>
     );
 }
