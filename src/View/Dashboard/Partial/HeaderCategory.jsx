@@ -40,9 +40,9 @@ function HeaderCategory({ refreshTable }) {
     return (
         <div>
             <div className="d-flex justify-content-between pt-5">
-                <h1>Category Info</h1>
+                <h1 className="main-title">Category Info</h1>
                 <div>
-                    <Button className="btn-add " onClick={toggleForm}>
+                    <Button className="btn-add mb-2 " onClick={toggleForm}>
                         {showForm ? "Close Form" : "Add Category +"}
                     </Button>
                 </div>

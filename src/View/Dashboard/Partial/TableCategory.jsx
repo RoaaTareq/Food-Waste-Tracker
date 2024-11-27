@@ -1,13 +1,13 @@
 import React from 'react';
-import HeaderCategory from './HeaderCategory'; 
-import { Table, Button } from 'react-bootstrap';
+import HeaderCategory from './HeaderCategory';
+import { Table, Button, Container, Row, Col } from 'react-bootstrap';
 
 const DataTable = () => {
   // Sample data for the table
   const data = [
-    { id: 1, name: 'Fruites', description: 'Fruits are the mature ovaries of flowering plants, typically containing seeds.' },
-    { id: 2, name: 'vegetables', description: ' Vegetables are edible plants or parts of plants that are typically savory or less sweet than fruits.' },
-    { id: 3, name: 'Cheese', description: ' Cheese is a dairy product made from the coagulation of milk proteins (mainly casein).' },
+    { id: 1, name: 'Fruits', description: 'Fruits are the mature ovaries of flowering plants, typically containing seeds.' },
+    { id: 2, name: 'Vegetables', description: 'Vegetables are edible plants or parts of plants that are typically savory or less sweet than fruits.' },
+    { id: 3, name: 'Cheese', description: 'Cheese is a dairy product made from the coagulation of milk proteins (mainly casein).' },
   ];
 
   const handleEdit = (id) => {
@@ -19,41 +19,49 @@ const DataTable = () => {
   };
 
   return (
-    <div>
+    <Container className="pt-4">
+      {/* Header section */}
       <HeaderCategory /> 
-      
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>CategoryName</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.description}</td>
-              <td>
-                <Button variant="primary" className='ml-2 mr-2' onClick={() => handleEdit(item.id)}>
-                  Edit
-                </Button>
-                <Button
-                  variant="danger"
-                  onClick={() => handleDelete(item.id)}
-                  className="ml-2 mr-2"
-                >
-                  Delete
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
+
+      {/* Table Section */}
+      <Row>
+        <Col>
+          <Table striped bordered hover responsive>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Category Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.description}</td>
+                  <td>
+                    <Button 
+                      variant="primary" 
+                      className="me-2" 
+                      onClick={() => handleEdit(item.id)}>
+                      Edit
+                    </Button>
+                    <Button 
+                      variant="danger" 
+                      onClick={() => handleDelete(item.id)} 
+                      className="me-2">
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

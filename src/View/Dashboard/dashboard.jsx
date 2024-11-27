@@ -15,7 +15,7 @@ function Dashboard() {
           {/* Routes for dashboard pages inside the home layout */}
           <Routes>
             <Route path="/" element={<Admin />} />
-            <Route path='/data' element={<Data />} />
+            <Route path="data" element={<Data />} />
             <Route path="/category" element={<Category />} />
             <Route path="/hoispital" element={<Hoispital />} />
           </Routes>
