@@ -8,9 +8,7 @@ const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email format").required("Email is required"),
     phone: Yup.string().required("Phone is required"),
     password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
-    passwordConfirm: Yup.string()
-        .oneOf([Yup.ref("password"), null], "Passwords must match")
-        .required("Password confirmation is required"),
+   
 });
 
 function CreateEmployee() {
@@ -40,7 +38,6 @@ function CreateEmployee() {
                     email: values.email,
                     phone: values.phone,
                     password: values.password,
-                    password_confirmation: values.passwordConfirm,
                     hospital_id: hospital_id, // Pass the correct hospital_id
                 },
                 {
@@ -65,8 +62,10 @@ function CreateEmployee() {
     };
 
     return (
-        <div className="form-employee">
-            <h2>Create New Employee</h2>
+       <section className="pt-5">
+        <div className="container">
+        <div className="add-form ">
+            <h2 className="sub-title">Create New Employee</h2>
 
             {error && <div className="alert alert-danger">{error}</div>}
             {success && <div className="alert alert-success">{success}</div>}
@@ -77,7 +76,7 @@ function CreateEmployee() {
                     email: "",
                     phone: "",
                     password: "",
-                    passwordConfirm: "",
+                   
                 }}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
@@ -108,19 +107,17 @@ function CreateEmployee() {
                             <ErrorMessage name="password" component="div" className="text-danger" />
                         </div>
 
-                        <div className="form-group">
-                            <label>Confirm Password</label>
-                            <Field type="password" name="passwordConfirm" className="form-control" placeholder="Confirm password" />
-                            <ErrorMessage name="passwordConfirm" component="div" className="text-danger" />
-                        </div>
+                        
 
-                        <button type="submit" className="btn btn-primary" disabled={isSubmitting || loading}>
+                        <button type="submit" className="mt-2 btn btn-primary" disabled={isSubmitting || loading}>
                             {loading ? "Creating..." : "Create Employee"}
                         </button>
                     </FormikForm>
                 )}
             </Formik>
         </div>
+        </div>
+       </section>
     );
 }
 

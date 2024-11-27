@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
-import Button from '../../../../Components/Buttons/Buttons';
-import styles from '../../CSS/Header.module.css';
-import EmployeeRegister from '../Models/CreateEmployee'; // Import the HospitalRegister form
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Header() {
-  const [showForm, setShowForm] = useState(false);
-
-  const handleAddHospitalClick = () => {
-    setShowForm(!showForm); // Toggle the form visibility
-  };
+ 
 
   return (
-    <div>
-      <div className={styles['button-container']}>
-        <Button className={styles['btn-add']} onClick={handleAddHospitalClick}>
+    <section>
+      <div className='container'>
+       <div className="d-flex justify-content-between pt-4">
+        <h1 className='main-title'>Employee Info</h1>
+        <Link  to="/hospital/member/add-employee" className='btn btn-primary mb-2' >
           Add Employee +
-        </Button>
+        </Link>
+       </div>
       </div>
 
-      {/* Conditionally render the form based on showForm */}
-      {showForm && <EmployeeRegister />}
-    </div>
+     
+    </section>
   );
 }
 
