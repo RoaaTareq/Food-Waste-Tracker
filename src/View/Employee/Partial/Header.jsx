@@ -10,10 +10,13 @@ function Header() {
   return (
     <div>
       <div className="d-flex justify-content-between pt-5">
-        <h1>Food Waste Info</h1>
+        <h1 className='main-title'>Food Waste Info</h1>
         <div>
-          <Link to='create/food' className="btn btn-primary" >
+          <Link to='/employee/create-food' className="btn btn-primary mb-2 me-2" >
            Add Food Item
+          </Link>
+          <Link  className="btn btn-primary mb-2 me-2" >
+          Export CVs
           </Link>
         </div>
       </div>

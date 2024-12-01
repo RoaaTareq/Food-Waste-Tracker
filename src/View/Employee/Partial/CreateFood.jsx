@@ -3,7 +3,11 @@ import { Form, Button } from 'react-bootstrap';
 
 function CreateFood() {
   return (
-    <Form className='bg-form'>
+ <section className='pt-4'>
+
+  <div className="container">
+    <h6 className='sub-title'>Food waste Item</h6>
+  <Form className='add-form'>
       <Form.Group controlId="category">
         <Form.Label>Category</Form.Label>
         <Form.Control type="text" placeholder="Enter category" />
@@ -34,10 +38,12 @@ function CreateFood() {
         <Form.Control type="date" />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" className='mt-3'>
         Submit
       </Button>
     </Form>
+  </div>
+ </section>
   );
 }
 
